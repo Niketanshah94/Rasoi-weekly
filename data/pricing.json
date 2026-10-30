@@ -1,0 +1,35 @@
+{
+  "trial_days": 7,
+  "first_charge_day": 8,
+  "reminder_day": 5,
+  "pre_debit_notice_hours_before": 24,
+  "past_due_grace_days": 3,
+  "india": {
+    "provider": "razorpay",
+    "currency": "INR",
+    "monthly": 149,
+    "yearly": 1199,
+    "tax": "Prices include GST"
+  },
+  "international": {
+    "provider": "polar",
+    "currency": "USD",
+    "monthly": 5.99,
+    "yearly": 49.99,
+    "note": "Charged in USD; local amounts shown at the daily exchange rate"
+  },
+  "fx_snapshot": {
+    "date": "28 October 2026",
+    "base": "USD",
+    "rates": {
+      "GBP": 0.75212496,
+      "AED": 3.6725,
+      "SGD": 1.2818442,
+      "INR": 95.14009092
+    }
+  },
+  "yearly_saving_pct": {
+    "india": 33,
+    "international": 30
+  }
+}

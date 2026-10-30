@@ -1,0 +1,1830 @@
+[
+  {
+    "key": "onion",
+    "name_en": "Onions",
+    "name_hi": "प्याज़",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tomato",
+    "name_en": "Tomatoes",
+    "name_hi": "टमाटर",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "potato",
+    "name_en": "Potatoes",
+    "name_hi": "आलू",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "carrot",
+    "name_en": "Carrots",
+    "name_hi": "गाजर",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cucumber",
+    "name_en": "Cucumbers",
+    "name_hi": "खीरा",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "capsicum",
+    "name_en": "Capsicum",
+    "name_hi": "शिमला मिर्च",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Bell peppers",
+      "GB": "Peppers",
+      "AE": "Peppers",
+      "SG": "Peppers"
+    }
+  },
+  {
+    "key": "cauli",
+    "name_en": "Cauliflower",
+    "name_hi": "फूलगोभी",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cabbage",
+    "name_en": "Cabbage",
+    "name_hi": "पत्ता गोभी",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "okra",
+    "name_en": "Bhindi (okra)",
+    "name_hi": "भिंडी",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "spinach",
+    "name_en": "Spinach (palak)",
+    "name_hi": "पालक",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "methi",
+    "name_en": "Methi leaves",
+    "name_hi": "मेथी",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "peas",
+    "name_en": "Green peas",
+    "name_hi": "हरी मटर",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "beans",
+    "name_en": "French beans",
+    "name_hi": "फ्रेंच बीन्स",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "brinjal",
+    "name_en": "Brinjal (baingan)",
+    "name_hi": "बैंगन",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Eggplant",
+      "GB": "Aubergine",
+      "AE": "Aubergine",
+      "SG": "Aubergine"
+    }
+  },
+  {
+    "key": "lauki",
+    "name_en": "Lauki (bottle gourd)",
+    "name_hi": "लौकी",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "mushroom",
+    "name_en": "Mushrooms",
+    "name_hi": "मशरूम",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "corn",
+    "name_en": "Sweet corn",
+    "name_hi": "स्वीट कॉर्न",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "GB": "Sweetcorn",
+      "AE": "Sweetcorn",
+      "SG": "Sweetcorn"
+    }
+  },
+  {
+    "key": "sprouts",
+    "name_en": "Moong sprouts",
+    "name_hi": "अंकुरित मूंग",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "lemon",
+    "name_en": "Lemons",
+    "name_hi": "नींबू",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "ginger",
+    "name_en": "Ginger",
+    "name_hi": "अदरक",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "garlic",
+    "name_en": "Garlic",
+    "name_hi": "लहसुन",
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "chilli",
+    "name_en": "Green chillies",
+    "name_hi": "हरी मिर्च",
+    "unit": "pcs",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Green chiles"
+    }
+  },
+  {
+    "key": "coriander",
+    "name_en": "Coriander leaves",
+    "name_hi": "हरा धनिया",
+    "unit": "bunch",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Cilantro"
+    }
+  },
+  {
+    "key": "curryleaves",
+    "name_en": "Curry leaves",
+    "name_hi": "करी पत्ता",
+    "unit": "bunch",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "banana",
+    "name_en": "Bananas",
+    "name_hi": "केला",
+    "unit": "pcs",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "apple",
+    "name_en": "Apples",
+    "name_hi": "सेब",
+    "unit": "pcs",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "papaya",
+    "name_en": "Papaya",
+    "name_hi": "पपीता",
+    "unit": "g",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "pomegranate",
+    "name_en": "Pomegranates",
+    "name_hi": "अनार",
+    "unit": "pcs",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "milk",
+    "name_en": "Milk",
+    "name_hi": "दूध",
+    "unit": "ml",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "curd",
+    "name_en": "Curd",
+    "name_hi": "दही",
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Plain yogurt",
+      "GB": "Natural yogurt",
+      "AE": "Natural yogurt",
+      "SG": "Natural yogurt"
+    }
+  },
+  {
+    "key": "paneer",
+    "name_en": "Paneer",
+    "name_hi": "पनीर",
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "ghee",
+    "name_en": "Ghee",
+    "name_hi": "घी",
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "butter",
+    "name_en": "Butter",
+    "name_hi": "मक्खन",
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cream",
+    "name_en": "Fresh cream",
+    "name_hi": "फ्रेश क्रीम",
+    "unit": "ml",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cheese",
+    "name_en": "Cheese",
+    "name_hi": "चीज़",
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "eggs",
+    "name_en": "Eggs",
+    "name_hi": "अंडे",
+    "unit": "pcs",
+    "aisle": "Dairy & eggs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": true,
+    "local_names": {}
+  },
+  {
+    "key": "rice",
+    "name_en": "Rice",
+    "name_hi": "चावल",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "atta",
+    "name_en": "Wheat flour (atta)",
+    "name_hi": "आटा",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Whole wheat flour",
+      "GB": "Wholemeal flour",
+      "AE": "Wholemeal flour",
+      "SG": "Wholemeal flour"
+    }
+  },
+  {
+    "key": "maida",
+    "name_en": "Maida",
+    "name_hi": "मैदा",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "All-purpose flour",
+      "GB": "Plain flour",
+      "AE": "Plain flour",
+      "SG": "Plain flour"
+    }
+  },
+  {
+    "key": "besan",
+    "name_en": "Besan (gram flour)",
+    "name_hi": "बेसन",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Chickpea flour",
+      "GB": "Gram flour",
+      "AE": "Gram flour",
+      "SG": "Gram flour"
+    }
+  },
+  {
+    "key": "poha",
+    "name_en": "Poha",
+    "name_hi": "पोहा",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "sooji",
+    "name_en": "Sooji (semolina)",
+    "name_hi": "सूजी",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "oats",
+    "name_en": "Rolled oats",
+    "name_hi": "ओट्स",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "ragi",
+    "name_en": "Ragi flour",
+    "name_hi": "रागी आटा",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "sabudana",
+    "name_en": "Sabudana",
+    "name_hi": "साबूदाना",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "murmura",
+    "name_en": "Murmura (puffed rice)",
+    "name_hi": "मुरमुरे",
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "toor",
+    "name_en": "Toor dal",
+    "name_hi": "अरहर (तूर) दाल",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "moong",
+    "name_en": "Yellow moong dal",
+    "name_hi": "पीली मूंग दाल",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "masoor",
+    "name_en": "Masoor dal",
+    "name_hi": "मसूर दाल",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Red lentils",
+      "GB": "Red lentils",
+      "AE": "Red lentils",
+      "SG": "Red lentils"
+    }
+  },
+  {
+    "key": "chanadal",
+    "name_en": "Chana dal",
+    "name_hi": "चना दाल",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "urad",
+    "name_en": "Whole urad dal",
+    "name_hi": "साबुत उड़द",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "rajma",
+    "name_en": "Rajma",
+    "name_hi": "राजमा",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "chana",
+    "name_en": "Kabuli chana",
+    "name_hi": "काबुली चना",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Chickpeas",
+      "GB": "Chickpeas",
+      "AE": "Chickpeas",
+      "SG": "Chickpeas"
+    }
+  },
+  {
+    "key": "soya",
+    "name_en": "Soya chunks",
+    "name_hi": "सोया चंक्स",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [
+      "soy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "roastedchana",
+    "name_en": "Roasted chana",
+    "name_hi": "भुना चना",
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "chicken",
+    "name_en": "Chicken (curry cut)",
+    "name_hi": "चिकन (करी कट)",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Chicken (bone-in pieces)",
+      "GB": "Chicken pieces (bone-in)",
+      "AE": "Chicken pieces (bone-in)",
+      "SG": "Chicken pieces (bone-in)"
+    }
+  },
+  {
+    "key": "chickenbl",
+    "name_en": "Chicken (boneless)",
+    "name_hi": "चिकन (बोनलेस)",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Chicken breast",
+      "GB": "Chicken breast",
+      "AE": "Chicken breast",
+      "SG": "Chicken breast"
+    }
+  },
+  {
+    "key": "mince",
+    "name_en": "Chicken mince",
+    "name_hi": "चिकन कीमा",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Ground chicken"
+    }
+  },
+  {
+    "key": "mutton",
+    "name_en": "Mutton",
+    "name_hi": "मटन",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Lamb",
+      "GB": "Lamb",
+      "AE": "Lamb",
+      "SG": "Lamb"
+    }
+  },
+  {
+    "key": "muttonmince",
+    "name_en": "Mutton mince",
+    "name_hi": "मटन कीमा",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Ground lamb",
+      "GB": "Lamb mince",
+      "AE": "Lamb mince",
+      "SG": "Lamb mince"
+    }
+  },
+  {
+    "key": "fish",
+    "name_en": "Fish (surmai or rohu)",
+    "name_hi": "मछली",
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "fish"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "White fish fillets",
+      "GB": "White fish fillets (cod or haddock)",
+      "AE": "Fish fillets (hammour or seabream)",
+      "SG": "Fish fillets (sea bass or snapper)"
+    }
+  },
+  {
+    "key": "bread",
+    "name_en": "Bread",
+    "name_hi": "ब्रेड",
+    "unit": "slices",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Sliced bread"
+    }
+  },
+  {
+    "key": "pav",
+    "name_en": "Pav buns",
+    "name_hi": "पाव",
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "batter",
+    "name_en": "Idli/dosa batter",
+    "name_hi": "इडली/डोसा बैटर",
+    "unit": "g",
+    "aisle": "Bread & ready-made",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "noodles",
+    "name_en": "Instant noodles",
+    "name_hi": "इंस्टेंट नूडल्स",
+    "unit": "packs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "hakka",
+    "name_en": "Hakka noodles",
+    "name_hi": "हक्का नूडल्स",
+    "unit": "g",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "pasta",
+    "name_en": "Penne pasta",
+    "name_hi": "पेने पास्ता",
+    "unit": "g",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "gulab",
+    "name_en": "Gulab jamun",
+    "name_hi": "गुलाब जामुन",
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "dairy",
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "kulfi",
+    "name_en": "Kulfi",
+    "name_hi": "कुल्फ़ी",
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "mishtidoi",
+    "name_en": "Mishti doi",
+    "name_hi": "मिष्टी दोई",
+    "unit": "cups",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "oil",
+    "name_en": "Cooking oil",
+    "name_hi": "खाने का तेल",
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "peanuts",
+    "name_en": "Peanuts",
+    "name_hi": "मूंगफली",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [
+      "peanuts"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "pb",
+    "name_en": "Peanut butter",
+    "name_hi": "पीनट बटर",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [
+      "peanuts"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "makhana",
+    "name_en": "Makhana",
+    "name_hi": "मखाना",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "almonds",
+    "name_en": "Almonds",
+    "name_hi": "बादाम",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [
+      "tree_nuts"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cashews",
+    "name_en": "Cashews",
+    "name_hi": "काजू",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [
+      "tree_nuts"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "coconut",
+    "name_en": "Grated coconut",
+    "name_hi": "कसा हुआ नारियल",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tamarind",
+    "name_en": "Tamarind",
+    "name_hi": "इमली",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "jaggery",
+    "name_en": "Jaggery",
+    "name_hi": "गुड़",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "sugar",
+    "name_en": "Sugar",
+    "name_hi": "चीनी",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tea",
+    "name_en": "Tea leaves",
+    "name_hi": "चायपत्ती",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "choc",
+    "name_en": "Dark chocolate",
+    "name_hi": "डार्क चॉकलेट",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "popcorn",
+    "name_en": "Popcorn kernels",
+    "name_hi": "पॉपकॉर्न के दाने",
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "soysauce",
+    "name_en": "Soy sauce",
+    "name_hi": "सोया सॉस",
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "lettuce",
+    "name_en": "Lettuce",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "broccoli",
+    "name_en": "Broccoli",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "parsley",
+    "name_en": "Parsley",
+    "name_hi": null,
+    "unit": "bunch",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "mint",
+    "name_en": "Mint",
+    "name_hi": null,
+    "unit": "bunch",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "springonion",
+    "name_en": "Spring onions",
+    "name_hi": null,
+    "unit": "bunch",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Scallions"
+    }
+  },
+  {
+    "key": "beansprouts",
+    "name_en": "Bean sprouts",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "bokchoy",
+    "name_en": "Bok choy",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "kangkong",
+    "name_en": "Kangkong (water spinach)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Vegetables & herbs",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "avocado",
+    "name_en": "Avocados",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "berries",
+    "name_en": "Mixed berries",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "dates",
+    "name_en": "Dates",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Fruit",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "yogurt",
+    "name_en": "Plain yogurt",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "labneh",
+    "name_en": "Labneh",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "halloumi",
+    "name_en": "Halloumi",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "icecream",
+    "name_en": "Ice cream",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "condensed",
+    "name_en": "Condensed milk",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "dairy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "soymilk",
+    "name_en": "Soya milk",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Dairy & eggs",
+    "allergens": [
+      "soy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "vermicelli",
+    "name_en": "Vermicelli",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "hareeswheat",
+    "name_en": "Harees wheat",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "granola",
+    "name_en": "Granola",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "ricenoodles",
+    "name_en": "Rice noodles",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "yellownoodles",
+    "name_en": "Yellow noodles",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Grains & flours",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "blackbeans",
+    "name_en": "Black beans (cooked)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "favabeans",
+    "name_en": "Fava beans (cooked)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tofu",
+    "name_en": "Tofu",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Dals & pulses",
+    "allergens": [
+      "soy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "beefmince",
+    "name_en": "Beef mince",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "beef"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Ground beef"
+    }
+  },
+  {
+    "key": "lamb",
+    "name_en": "Lamb",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "lambmince",
+    "name_en": "Lamb mince",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Ground lamb"
+    }
+  },
+  {
+    "key": "bacon",
+    "name_en": "Bacon",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "pork"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "sausages",
+    "name_en": "Sausages",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "pork"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "ham",
+    "name_en": "Ham",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "pork"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "porkribs",
+    "name_en": "Pork ribs",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "pork"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "salmon",
+    "name_en": "Salmon fillets",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "fish"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "prawns",
+    "name_en": "Prawns",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "shellfish"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {
+      "US": "Shrimp"
+    }
+  },
+  {
+    "key": "crab",
+    "name_en": "Crab",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "shellfish"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "anchovies",
+    "name_en": "Ikan bilis (dried anchovies)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Meat & fish",
+    "allergens": [
+      "fish"
+    ],
+    "is_meat_or_fish": true,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tortillas",
+    "name_en": "Tortillas",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "burgerbuns",
+    "name_en": "Burger buns",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "pita",
+    "name_en": "Pita bread",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "crumpets",
+    "name_en": "Crumpets",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "bakedbeans",
+    "name_en": "Baked beans",
+    "name_hi": null,
+    "unit": "cans",
+    "aisle": "Bread & ready-made",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "cookies",
+    "name_en": "Cookies",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "dairy",
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "GB": "Biscuits",
+      "AE": "Biscuits",
+      "SG": "Biscuits"
+    }
+  },
+  {
+    "key": "kunafa",
+    "name_en": "Kunafa",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "dairy",
+      "gluten",
+      "tree_nuts"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "prata",
+    "name_en": "Frozen roti prata",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "popiah",
+    "name_en": "Popiah skins",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "mantou",
+    "name_en": "Mantou buns",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [
+      "gluten"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "kueh",
+    "name_en": "Assorted kueh",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Bread & ready-made",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "oliveoil",
+    "name_en": "Olive oil",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "honey",
+    "name_en": "Honey",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "maple",
+    "name_en": "Maple syrup",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "jam",
+    "name_en": "Jam",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "tahini",
+    "name_en": "Tahini",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "zaatar",
+    "name_en": "Za’atar",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "stock",
+    "name_en": "Stock cubes",
+    "name_hi": null,
+    "unit": "pcs",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {
+      "US": "Bouillon cubes"
+    }
+  },
+  {
+    "key": "coconutmilk",
+    "name_en": "Coconut milk",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "kaya",
+    "name_en": "Kaya (coconut jam)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "sambal",
+    "name_en": "Sambal chilli paste",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "laksapaste",
+    "name_en": "Laksa paste",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [
+      "shellfish"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "kecap",
+    "name_en": "Sweet soy sauce",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "datesyrup",
+    "name_en": "Date syrup",
+    "name_hi": null,
+    "unit": "ml",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "coffee",
+    "name_en": "Ground coffee",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "gulamelaka",
+    "name_en": "Gula melaka (palm sugar)",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  },
+  {
+    "key": "chendol",
+    "name_en": "Chendol jelly",
+    "name_hi": null,
+    "unit": "g",
+    "aisle": "Pantry",
+    "allergens": [],
+    "is_meat_or_fish": false,
+    "is_egg": false,
+    "local_names": {}
+  }
+]

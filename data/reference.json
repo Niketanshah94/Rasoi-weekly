@@ -1,0 +1,268 @@
+{
+  "meals": [
+    {
+      "key": "breakfast",
+      "code": "b",
+      "name_en": "Breakfast",
+      "name_hi": "नाश्ता",
+      "default_time": "8 am"
+    },
+    {
+      "key": "lunch",
+      "code": "l",
+      "name_en": "Lunch",
+      "name_hi": "दोपहर का खाना",
+      "default_time": "1 pm"
+    },
+    {
+      "key": "evening_snack",
+      "code": "s",
+      "name_en": "Evening snack",
+      "name_hi": "शाम का नाश्ता",
+      "default_time": "5:30 pm"
+    },
+    {
+      "key": "dinner",
+      "code": "d",
+      "name_en": "Dinner",
+      "name_hi": "रात का खाना",
+      "default_time": "8:30 pm"
+    },
+    {
+      "key": "late_night",
+      "code": "n",
+      "name_en": "Late-night craving",
+      "name_hi": "देर रात की भूख",
+      "default_time": "11 pm"
+    }
+  ],
+  "moods": [
+    {
+      "key": "wholesome",
+      "code": "h",
+      "label": "Wholesome"
+    },
+    {
+      "key": "comfort",
+      "code": "c",
+      "label": "Comfort"
+    },
+    {
+      "key": "treat",
+      "code": "t",
+      "label": "Treat"
+    }
+  ],
+  "cuisines": [
+    {
+      "code": "HS",
+      "name": "Home style"
+    },
+    {
+      "code": "NI",
+      "name": "North Indian"
+    },
+    {
+      "code": "SI",
+      "name": "South Indian"
+    },
+    {
+      "code": "GJ",
+      "name": "Gujarati"
+    },
+    {
+      "code": "MH",
+      "name": "Maharashtrian"
+    },
+    {
+      "code": "BN",
+      "name": "Bengali"
+    },
+    {
+      "code": "GO",
+      "name": "Goan"
+    },
+    {
+      "code": "HY",
+      "name": "Hyderabadi"
+    },
+    {
+      "code": "IC",
+      "name": "Indo-Chinese"
+    },
+    {
+      "code": "SF",
+      "name": "Street food"
+    },
+    {
+      "code": "CO",
+      "name": "Continental"
+    },
+    {
+      "code": "AM",
+      "name": "American"
+    },
+    {
+      "code": "TX",
+      "name": "Tex-Mex"
+    },
+    {
+      "code": "BR",
+      "name": "British"
+    },
+    {
+      "code": "AR",
+      "name": "Arabic"
+    },
+    {
+      "code": "EM",
+      "name": "Emirati"
+    },
+    {
+      "code": "SGC",
+      "name": "Singaporean"
+    }
+  ],
+  "allergens": [
+    {
+      "code": "d",
+      "key": "dairy",
+      "label": "dairy"
+    },
+    {
+      "code": "g",
+      "key": "gluten",
+      "label": "gluten"
+    },
+    {
+      "code": "n",
+      "key": "tree_nuts",
+      "label": "tree nuts"
+    },
+    {
+      "code": "p",
+      "key": "peanuts",
+      "label": "peanuts"
+    },
+    {
+      "code": "s",
+      "key": "soy",
+      "label": "soy"
+    },
+    {
+      "code": "f",
+      "key": "fish",
+      "label": "fish"
+    },
+    {
+      "code": "c",
+      "key": "shellfish",
+      "label": "shellfish"
+    },
+    {
+      "code": "b",
+      "key": "beef",
+      "label": "beef"
+    },
+    {
+      "code": "k",
+      "key": "pork",
+      "label": "pork"
+    }
+  ],
+  "leave_out_options": [
+    {
+      "code": "d",
+      "key": "dairy",
+      "label": "Dairy",
+      "matches": [
+        "dairy"
+      ],
+      "countries": "all"
+    },
+    {
+      "code": "g",
+      "key": "gluten",
+      "label": "Gluten",
+      "matches": [
+        "gluten"
+      ],
+      "countries": "all"
+    },
+    {
+      "code": "n",
+      "key": "tree_nuts",
+      "label": "Nuts",
+      "matches": [
+        "tree_nuts",
+        "peanuts"
+      ],
+      "countries": "all"
+    },
+    {
+      "code": "b",
+      "key": "beef",
+      "label": "Beef",
+      "matches": [
+        "beef"
+      ],
+      "countries": "outside_india"
+    },
+    {
+      "code": "k",
+      "key": "pork",
+      "label": "Pork",
+      "matches": [
+        "pork"
+      ],
+      "countries": "outside_india"
+    }
+  ],
+  "spice_levels": [
+    {
+      "value": 0,
+      "label": "Mild"
+    },
+    {
+      "value": 1,
+      "label": "Medium"
+    },
+    {
+      "value": 2,
+      "label": "Spicy"
+    }
+  ],
+  "effort_levels": [
+    {
+      "value": 1,
+      "label": "Easy"
+    },
+    {
+      "value": 2,
+      "label": "Medium"
+    },
+    {
+      "value": 3,
+      "label": "Involved"
+    }
+  ],
+  "grocery_aisles": [
+    "Vegetables & herbs",
+    "Fruit",
+    "Dairy & eggs",
+    "Grains & flours",
+    "Dals & pulses",
+    "Meat & fish",
+    "Bread & ready-made",
+    "Pantry"
+  ],
+  "health_targets_per_person_per_day": {
+    "calories_min": 1600,
+    "calories_max": 2400,
+    "protein_g_min": 50,
+    "fibre_g_min": 25,
+    "fat_pct_of_calories_max": 35,
+    "carbs_pct_of_calories_min": 45,
+    "carbs_pct_of_calories_max": 65
+  }
+}

@@ -1,0 +1,733 @@
+[
+  {
+    "key": "balanced",
+    "name": "Balanced mix",
+    "description": "Wholesome weekdays, treats at the weekend",
+    "countries": [
+      "IN"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "poha",
+        "tue": "chilla",
+        "wed": "omelette",
+        "thu": "idli",
+        "fri": "appam",
+        "sat": "paratha",
+        "sun": "chole"
+      },
+      "lunch": {
+        "mon": "dalrice",
+        "tue": "bhurji",
+        "wed": "sambarrice",
+        "thu": "rajma",
+        "fri": "kadhi",
+        "sat": "chickencurry",
+        "sun": "vegbiryani"
+      },
+      "evening_snack": {
+        "mon": "makhana",
+        "tue": "sprouts",
+        "wed": "fruit",
+        "thu": "dhokla",
+        "fri": "bhel",
+        "sat": "samosa",
+        "sun": "vadapav"
+      },
+      "dinner": {
+        "mon": "rotidal",
+        "tue": "palak",
+        "wed": "khichdi",
+        "thu": "eggcurry",
+        "fri": "hakka",
+        "sat": "pavbhaji",
+        "sun": "butterchicken"
+      },
+      "late_night": {
+        "mon": "haldi",
+        "tue": "popcorn",
+        "wed": "choc",
+        "thu": "shake",
+        "fri": "chanapeanut",
+        "sat": "cheesetoast",
+        "sun": "kulfi"
+      }
+    }
+  },
+  {
+    "key": "comfort",
+    "name": "Desi comfort",
+    "description": "Regional home classics, a treat every day",
+    "countries": [
+      "IN"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "paratha",
+        "tue": "poha",
+        "wed": "dosa",
+        "thu": "thepla",
+        "fri": "pongal",
+        "sat": "chole",
+        "sun": "luchi"
+      },
+      "lunch": {
+        "mon": "rajma",
+        "tue": "kadhi",
+        "wed": "chickencurry",
+        "thu": "gujthali",
+        "fri": "bhaat",
+        "sat": "chanamasala",
+        "sun": "chickenbiryani"
+      },
+      "evening_snack": {
+        "mon": "samosa",
+        "tue": "vadapav",
+        "wed": "pakora",
+        "thu": "makhana",
+        "fri": "dhokla",
+        "sat": "momos",
+        "sun": "noodles"
+      },
+      "dinner": {
+        "mon": "aloogobi",
+        "tue": "pavbhaji",
+        "wed": "dalmakhani",
+        "thu": "butterchicken",
+        "fri": "bharta",
+        "sat": "rogan",
+        "sun": "khichdi"
+      },
+      "late_night": {
+        "mon": "gulab",
+        "tue": "kheer",
+        "wed": "kulfi",
+        "thu": "halwa",
+        "fri": "mishtidoi",
+        "sat": "cheesetoast",
+        "sun": "haldi"
+      }
+    }
+  },
+  {
+    "key": "protein",
+    "name": "Protein-rich",
+    "description": "20 g or more protein at most meals",
+    "countries": [
+      "IN"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "omelette",
+        "tue": "moongchilla",
+        "wed": "eggbhurji",
+        "thu": "chilla",
+        "fri": "misal",
+        "sat": "keemaparatha",
+        "sun": "moongchilla"
+      },
+      "lunch": {
+        "mon": "bhurji",
+        "tue": "chickencurry",
+        "wed": "rajma",
+        "thu": "goanfish",
+        "fri": "soya",
+        "sat": "chanamasala",
+        "sun": "chickenbiryani"
+      },
+      "evening_snack": {
+        "mon": "sprouts",
+        "tue": "tikka",
+        "wed": "paneertikka",
+        "thu": "eggchaat",
+        "fri": "chanapeanut",
+        "sat": "sprouts",
+        "sun": "chickenroll"
+      },
+      "dinner": {
+        "mon": "palak",
+        "tue": "grilledchicken",
+        "wed": "eggcurry",
+        "thu": "lauki",
+        "fri": "macherjhol",
+        "sat": "mushroommatar",
+        "sun": "butterchicken"
+      },
+      "late_night": {
+        "mon": "shake",
+        "tue": "chickensoup",
+        "wed": "haldi",
+        "thu": "choc",
+        "fri": "shake",
+        "sat": "cheesetoast",
+        "sun": "kulfi"
+      }
+    }
+  },
+  {
+    "key": "quick",
+    "name": "Quick weekday",
+    "description": "Most dishes ready in about 30 minutes",
+    "countries": [
+      "IN"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "oats",
+        "tue": "pbtoast",
+        "wed": "omelette",
+        "thu": "ragidosa",
+        "fri": "chilla",
+        "sat": "poha",
+        "sun": "eggbhurji"
+      },
+      "lunch": {
+        "mon": "curdrice",
+        "tue": "bhurji",
+        "wed": "pasta",
+        "thu": "masoordal",
+        "fri": "eggfriedrice",
+        "sat": "paneerroll",
+        "sun": "pulao"
+      },
+      "evening_snack": {
+        "mon": "makhana",
+        "tue": "fruit",
+        "wed": "sprouts",
+        "thu": "corn",
+        "fri": "bhel",
+        "sat": "eggchaat",
+        "sun": "popcorn"
+      },
+      "dinner": {
+        "mon": "khichdi",
+        "tue": "hakka",
+        "wed": "grilledchicken",
+        "thu": "mushroommatar",
+        "fri": "soya",
+        "sat": "eggcurry",
+        "sun": "chickenroll"
+      },
+      "late_night": {
+        "mon": "haldi",
+        "tue": "choc",
+        "wed": "popcorn",
+        "thu": "shake",
+        "fri": "chanapeanut",
+        "sat": "cornsoup",
+        "sun": "kulfi"
+      }
+    }
+  },
+  {
+    "key": "us_everyday",
+    "name": "Everyday American",
+    "description": "Familiar favorites, treats at the weekend",
+    "countries": [
+      "US"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "us_eggs",
+        "tue": "us_oats",
+        "wed": "us_avotoast",
+        "thu": "us_parfait",
+        "fri": "us_burrito",
+        "sat": "us_pancakes",
+        "sun": "us_bacon"
+      },
+      "lunch": {
+        "mon": "us_caesar",
+        "tue": "us_wrap",
+        "wed": "us_bowl",
+        "thu": "us_grilledcheese",
+        "fri": "us_chili",
+        "sat": "us_tacos",
+        "sun": "us_mac"
+      },
+      "evening_snack": {
+        "mon": "us_applepb",
+        "tue": "ae_hummus",
+        "wed": "us_trailmix",
+        "thu": "us_quesadilla",
+        "fri": "us_applepb",
+        "sat": "us_nachos",
+        "sun": "popcorn"
+      },
+      "dinner": {
+        "mon": "us_roast",
+        "tue": "us_stirfry",
+        "wed": "us_salmon",
+        "thu": "us_spaghetti",
+        "fri": "us_beanburger",
+        "sat": "us_burger",
+        "sun": "grilledchicken"
+      },
+      "late_night": {
+        "mon": "us_cookies",
+        "tue": "popcorn",
+        "wed": "us_parfait",
+        "thu": "choc",
+        "fri": "shake",
+        "sat": "us_sundae",
+        "sun": "us_quesadilla"
+      }
+    }
+  },
+  {
+    "key": "us_light",
+    "name": "Light and lean",
+    "description": "More protein and vegetables, fewer treats",
+    "countries": [
+      "US"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "us_oats",
+        "tue": "us_parfait",
+        "wed": "us_avotoast",
+        "thu": "us_eggs",
+        "fri": "us_oats",
+        "sat": "us_avotoast",
+        "sun": "us_burrito"
+      },
+      "lunch": {
+        "mon": "us_caesar",
+        "tue": "us_bowl",
+        "wed": "us_wrap",
+        "thu": "us_caesar",
+        "fri": "us_bowl",
+        "sat": "us_wrap",
+        "sun": "us_tacos"
+      },
+      "evening_snack": {
+        "mon": "us_applepb",
+        "tue": "ae_hummus",
+        "wed": "us_trailmix",
+        "thu": "ae_hummus",
+        "fri": "us_applepb",
+        "sat": "us_trailmix",
+        "sun": "popcorn"
+      },
+      "dinner": {
+        "mon": "us_salmon",
+        "tue": "us_stirfry",
+        "wed": "grilledchicken",
+        "thu": "us_beanburger",
+        "fri": "us_salmon",
+        "sat": "us_roast",
+        "sun": "gb_chickpeacurry"
+      },
+      "late_night": {
+        "mon": "shake",
+        "tue": "us_parfait",
+        "wed": "popcorn",
+        "thu": "choc",
+        "fri": "shake",
+        "sat": "popcorn",
+        "sun": "us_sundae"
+      }
+    }
+  },
+  {
+    "key": "gb_classics",
+    "name": "British classics",
+    "description": "From porridge to the Sunday roast",
+    "countries": [
+      "GB"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "gb_porridge",
+        "tue": "gb_soldiers",
+        "wed": "gb_beans",
+        "thu": "gb_porridge",
+        "fri": "gb_salmoneggs",
+        "sat": "gb_beans",
+        "sun": "gb_fullenglish"
+      },
+      "lunch": {
+        "mon": "gb_soup",
+        "tue": "gb_coronation",
+        "wed": "gb_jacket",
+        "thu": "gb_ploughmans",
+        "fri": "gb_soup",
+        "sat": "gb_ctm",
+        "sun": "gb_roast"
+      },
+      "evening_snack": {
+        "mon": "gb_applecheddar",
+        "tue": "gb_crumpets",
+        "wed": "ae_hummus",
+        "thu": "gb_cheesetoast",
+        "fri": "gb_applecheddar",
+        "sat": "gb_scones",
+        "sun": "gb_crumpets"
+      },
+      "dinner": {
+        "mon": "gb_shepherds",
+        "tue": "gb_chickpeacurry",
+        "wed": "gb_salmonpots",
+        "thu": "gb_bangers",
+        "fri": "gb_fishchips",
+        "sat": "gb_lasagne",
+        "sun": "pasta"
+      },
+      "late_night": {
+        "mon": "gb_tea",
+        "tue": "gb_hotchoc",
+        "wed": "gb_toastie",
+        "thu": "gb_tea",
+        "fri": "choc",
+        "sat": "gb_crumble",
+        "sun": "gb_hotchoc"
+      }
+    }
+  },
+  {
+    "key": "gb_light",
+    "name": "Healthy week",
+    "description": "Lighter lunches and fish twice a week",
+    "countries": [
+      "GB"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "gb_porridge",
+        "tue": "us_oats",
+        "wed": "gb_soldiers",
+        "thu": "us_parfait",
+        "fri": "gb_salmoneggs",
+        "sat": "us_avotoast",
+        "sun": "gb_porridge"
+      },
+      "lunch": {
+        "mon": "gb_soup",
+        "tue": "us_wrap",
+        "wed": "gb_coronation",
+        "thu": "gb_soup",
+        "fri": "ae_fattoush",
+        "sat": "us_caesar",
+        "sun": "gb_jacket"
+      },
+      "evening_snack": {
+        "mon": "gb_applecheddar",
+        "tue": "ae_hummus",
+        "wed": "us_applepb",
+        "thu": "gb_applecheddar",
+        "fri": "ae_hummus",
+        "sat": "us_trailmix",
+        "sun": "popcorn"
+      },
+      "dinner": {
+        "mon": "gb_salmonpots",
+        "tue": "gb_chickpeacurry",
+        "wed": "grilledchicken",
+        "thu": "us_stirfry",
+        "fri": "gb_salmonpots",
+        "sat": "gb_roast",
+        "sun": "gb_lasagne"
+      },
+      "late_night": {
+        "mon": "gb_tea",
+        "tue": "shake",
+        "wed": "popcorn",
+        "thu": "gb_hotchoc",
+        "fri": "gb_tea",
+        "sat": "choc",
+        "sun": "popcorn"
+      }
+    }
+  },
+  {
+    "key": "ae_arabic",
+    "name": "Emirati and Arabic",
+    "description": "Machboos, shawarma, luqaimat and more",
+    "countries": [
+      "AE"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "ae_labneh",
+        "tue": "ae_shakshuka",
+        "wed": "ae_balaleet",
+        "thu": "ae_foul",
+        "fri": "ae_manakeesh",
+        "sat": "ae_regag",
+        "sun": "ae_balaleet"
+      },
+      "lunch": {
+        "mon": "ae_shawarma",
+        "tue": "ae_mujaddara",
+        "wed": "ae_fattoush",
+        "thu": "ae_falafel",
+        "fri": "ae_machboos",
+        "sat": "ae_shawarma",
+        "sun": "ae_harees"
+      },
+      "evening_snack": {
+        "mon": "ae_dates",
+        "tue": "ae_hummus",
+        "wed": "ae_karak",
+        "thu": "ae_samboosa",
+        "fri": "ae_dates",
+        "sat": "ae_luqaimat",
+        "sun": "ae_manakeesh"
+      },
+      "dinner": {
+        "mon": "ae_tawook",
+        "tue": "ae_maqluba",
+        "wed": "ae_grilledfish",
+        "thu": "ae_thareed",
+        "fri": "ae_mujaddara",
+        "sat": "ae_kabsa",
+        "sun": "ae_grilledfish"
+      },
+      "late_night": {
+        "mon": "ae_laban",
+        "tue": "ae_dates",
+        "wed": "ae_ummali",
+        "thu": "ae_laban",
+        "fri": "choc",
+        "sat": "ae_kunafa",
+        "sun": "ae_ummali"
+      }
+    }
+  },
+  {
+    "key": "ae_light",
+    "name": "Light Mediterranean",
+    "description": "Mezze, grills and salads",
+    "countries": [
+      "AE"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "ae_labneh",
+        "tue": "ae_foul",
+        "wed": "ae_shakshuka",
+        "thu": "ae_labneh",
+        "fri": "us_oats",
+        "sat": "ae_shakshuka",
+        "sun": "ae_foul"
+      },
+      "lunch": {
+        "mon": "ae_fattoush",
+        "tue": "ae_falafel",
+        "wed": "ae_mujaddara",
+        "thu": "ae_fattoush",
+        "fri": "ae_shawarma",
+        "sat": "ae_falafel",
+        "sun": "ae_mujaddara"
+      },
+      "evening_snack": {
+        "mon": "ae_hummus",
+        "tue": "ae_dates",
+        "wed": "ae_hummus",
+        "thu": "ae_dates",
+        "fri": "ae_hummus",
+        "sat": "ae_dates",
+        "sun": "popcorn"
+      },
+      "dinner": {
+        "mon": "ae_grilledfish",
+        "tue": "ae_tawook",
+        "wed": "ae_maqluba",
+        "thu": "ae_grilledfish",
+        "fri": "ae_tawook",
+        "sat": "grilledchicken",
+        "sun": "ae_maqluba"
+      },
+      "late_night": {
+        "mon": "ae_laban",
+        "tue": "shake",
+        "wed": "ae_laban",
+        "thu": "popcorn",
+        "fri": "ae_laban",
+        "sat": "choc",
+        "sun": "shake"
+      }
+    }
+  },
+  {
+    "key": "sg_hawker",
+    "name": "Hawker favourites",
+    "description": "Chicken rice, laksa and chilli crab at home",
+    "countries": [
+      "SG"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "sg_kaya",
+        "tue": "sg_beehoon",
+        "wed": "sg_congee",
+        "thu": "sg_prata",
+        "fri": "sg_kaya",
+        "sat": "sg_nasilemak",
+        "sun": "sg_prata"
+      },
+      "lunch": {
+        "mon": "sg_chickenrice",
+        "tue": "sg_caifan",
+        "wed": "sg_ytf",
+        "thu": "sg_meegoreng",
+        "fri": "sg_chickenrice",
+        "sat": "sg_laksa",
+        "sun": "sg_ckt"
+      },
+      "evening_snack": {
+        "mon": "sg_currypuff",
+        "tue": "sg_popiah",
+        "wed": "sg_kueh",
+        "thu": "sg_satay",
+        "fri": "sg_currypuff",
+        "sat": "sg_satay",
+        "sun": "sg_popiah"
+      },
+      "dinner": {
+        "mon": "sg_steamfish",
+        "tue": "sg_mapo",
+        "wed": "sg_tofuveg",
+        "thu": "sg_kangkong",
+        "fri": "sg_bkt",
+        "sat": "sg_chillicrab",
+        "sun": "sg_steamfish"
+      },
+      "late_night": {
+        "mon": "sg_soymilk",
+        "tue": "sg_chendol",
+        "wed": "choc",
+        "thu": "sg_soymilk",
+        "fri": "chickensoup",
+        "sat": "sg_chendol",
+        "sun": "noodles"
+      }
+    }
+  },
+  {
+    "key": "sg_light",
+    "name": "Home-cooked and light",
+    "description": "Steamed fish, soups and greens",
+    "countries": [
+      "SG"
+    ],
+    "dish_country_preference": "own country",
+    "week": {
+      "breakfast": {
+        "mon": "sg_congee",
+        "tue": "sg_kaya",
+        "wed": "sg_beehoon",
+        "thu": "sg_congee",
+        "fri": "sg_prata",
+        "sat": "sg_beehoon",
+        "sun": "sg_kaya"
+      },
+      "lunch": {
+        "mon": "sg_ytf",
+        "tue": "sg_caifan",
+        "wed": "sg_chickenrice",
+        "thu": "sg_ytf",
+        "fri": "sg_tofuveg",
+        "sat": "sg_meegoreng",
+        "sun": "sg_chickenrice"
+      },
+      "evening_snack": {
+        "mon": "sg_popiah",
+        "tue": "ae_hummus",
+        "wed": "sg_soymilk",
+        "thu": "sg_popiah",
+        "fri": "sg_satay",
+        "sat": "ae_hummus",
+        "sun": "sg_kueh"
+      },
+      "dinner": {
+        "mon": "sg_tofuveg",
+        "tue": "sg_steamfish",
+        "wed": "sg_kangkong",
+        "thu": "sg_mapo",
+        "fri": "sg_tofuveg",
+        "sat": "sg_steamfish",
+        "sun": "sg_kangkong"
+      },
+      "late_night": {
+        "mon": "sg_soymilk",
+        "tue": "popcorn",
+        "wed": "cornsoup",
+        "thu": "sg_soymilk",
+        "fri": "shake",
+        "sat": "cornsoup",
+        "sun": "sg_chendol"
+      }
+    }
+  },
+  {
+    "key": "indian",
+    "name": "Indian at home",
+    "description": "Dal, sabzi and biryani, wherever you live",
+    "countries": [
+      "US",
+      "GB",
+      "AE",
+      "SG"
+    ],
+    "dish_country_preference": "IN",
+    "week": {
+      "breakfast": {
+        "mon": "poha",
+        "tue": "chilla",
+        "wed": "omelette",
+        "thu": "idli",
+        "fri": "appam",
+        "sat": "paratha",
+        "sun": "chole"
+      },
+      "lunch": {
+        "mon": "dalrice",
+        "tue": "bhurji",
+        "wed": "sambarrice",
+        "thu": "rajma",
+        "fri": "kadhi",
+        "sat": "chickencurry",
+        "sun": "vegbiryani"
+      },
+      "evening_snack": {
+        "mon": "makhana",
+        "tue": "sprouts",
+        "wed": "fruit",
+        "thu": "dhokla",
+        "fri": "bhel",
+        "sat": "samosa",
+        "sun": "vadapav"
+      },
+      "dinner": {
+        "mon": "rotidal",
+        "tue": "palak",
+        "wed": "khichdi",
+        "thu": "eggcurry",
+        "fri": "hakka",
+        "sat": "pavbhaji",
+        "sun": "butterchicken"
+      },
+      "late_night": {
+        "mon": "haldi",
+        "tue": "popcorn",
+        "wed": "choc",
+        "thu": "shake",
+        "fri": "chanapeanut",
+        "sat": "cheesetoast",
+        "sun": "kulfi"
+      }
+    }
+  }
+]

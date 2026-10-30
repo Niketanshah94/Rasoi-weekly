@@ -1,0 +1,117 @@
+[
+  {
+    "code": "IN",
+    "name": "India",
+    "dial_code": "+91",
+    "mobile_regex": "^[6-9]\\d{9}$",
+    "mobile_length": 10,
+    "mobile_placeholder": "98765 43210",
+    "mobile_error": "Enter a 10-digit mobile number starting with 6, 7, 8 or 9.",
+    "currency": "INR",
+    "billing_provider": "razorpay",
+    "web_payment_methods": [
+      "upi",
+      "card"
+    ],
+    "cards_label": "Visa, Mastercard or RuPay",
+    "units": "metric",
+    "shopping_list_name": "bazaar list",
+    "spices_note": "Salt and dry masalas",
+    "tax_note": "Prices include GST.",
+    "invoice_name": "GST invoice",
+    "privacy_law": "India’s Digital Personal Data Protection Act",
+    "ingredient_names": "default"
+  },
+  {
+    "code": "US",
+    "name": "United States",
+    "dial_code": "+1",
+    "mobile_regex": "^[2-9]\\d{9}$",
+    "mobile_length": 10,
+    "mobile_placeholder": "201 555 0123",
+    "mobile_error": "Enter a 10-digit US mobile number.",
+    "currency": "USD",
+    "billing_provider": "polar",
+    "web_payment_methods": [
+      "card",
+      "wallet"
+    ],
+    "cards_label": "Visa, Mastercard, Amex or Discover",
+    "units": "us",
+    "shopping_list_name": "shopping list",
+    "spices_note": "Salt and dried spices",
+    "tax_note": "Any sales tax is calculated at checkout.",
+    "invoice_name": "receipt",
+    "privacy_law": "US state privacy laws such as California’s CCPA",
+    "ingredient_names": "US"
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom",
+    "dial_code": "+44",
+    "mobile_regex": "^7\\d{9}$",
+    "mobile_length": 10,
+    "mobile_placeholder": "7400 123456",
+    "mobile_error": "Enter your UK mobile number without the first 0, starting with 7.",
+    "currency": "GBP",
+    "billing_provider": "polar",
+    "web_payment_methods": [
+      "card",
+      "wallet"
+    ],
+    "cards_label": "Visa, Mastercard or Amex",
+    "units": "metric",
+    "shopping_list_name": "shopping list",
+    "spices_note": "Salt and dried spices",
+    "tax_note": "Charged in US dollars; the pound price is a guide and your bank sets the final amount. Any VAT is calculated at checkout.",
+    "invoice_name": "receipt",
+    "privacy_law": "UK GDPR",
+    "ingredient_names": "GB"
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "dial_code": "+971",
+    "mobile_regex": "^5\\d{8}$",
+    "mobile_length": 9,
+    "mobile_placeholder": "50 123 4567",
+    "mobile_error": "Enter a 9-digit UAE mobile number starting with 5.",
+    "currency": "AED",
+    "billing_provider": "polar",
+    "web_payment_methods": [
+      "card",
+      "wallet"
+    ],
+    "cards_label": "Visa, Mastercard or Amex",
+    "units": "metric",
+    "shopping_list_name": "shopping list",
+    "spices_note": "Salt and dried spices",
+    "tax_note": "Charged in US dollars; the dirham price is a guide and your bank sets the final amount. Any VAT is calculated at checkout.",
+    "invoice_name": "receipt",
+    "privacy_law": "the UAE Personal Data Protection Law",
+    "ingredient_names": "AE"
+  },
+  {
+    "code": "SG",
+    "name": "Singapore",
+    "dial_code": "+65",
+    "mobile_regex": "^[89]\\d{7}$",
+    "mobile_length": 8,
+    "mobile_placeholder": "8123 4567",
+    "mobile_error": "Enter an 8-digit Singapore mobile number starting with 8 or 9.",
+    "currency": "SGD",
+    "billing_provider": "polar",
+    "web_payment_methods": [
+      "card",
+      "wallet"
+    ],
+    "cards_label": "Visa, Mastercard or Amex",
+    "units": "metric",
+    "shopping_list_name": "shopping list",
+    "spices_note": "Salt and dried spices",
+    "tax_note": "Charged in US dollars; the Singapore dollar price is a guide and your bank sets the final amount. Any GST is calculated at checkout.",
+    "invoice_name": "receipt",
+    "privacy_law": "Singapore’s Personal Data Protection Act",
+    "ingredient_names": "SG"
+  }
+]
