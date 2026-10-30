@@ -65,6 +65,21 @@ Work through these in order. Each milestone ends with passing tests and a pull r
 
 ---
 
+## M3b. Android test build
+
+**Goal:** an Android app you can install on a phone and sign in with, built from the same Vue code as the web app.
+
+- Capacitor project in `/mobile` (Android only for now) loading the customer web app from a staging URL; for local work, live reload against the dev server on the same network.
+- Native Google sign-in plugin → `POST /api/auth/google`; email login links open the app (Android App Links).
+- Safe-area handling, status bar and splash screen, app icon, offline fallback screen.
+- A signed debug APK built by GitHub Actions on every push to `main`, downloadable from the run.
+
+**Done when:** the APK installs on a real Android phone, opens the app, and a user can sign up and log in with Google and with an email link.
+
+> Starter prompt: "Start M3b. Set up Capacitor in /mobile for Android only. Check current plugin options for native Google sign-in before choosing. Tell me what I need to set up in Google Cloud and on my phone."
+
+---
+
 ## M4. Households and onboarding
 
 **Goal:** the six onboarding steps and household settings.
@@ -140,17 +155,17 @@ Work through these in order. Each milestone ends with passing tests and a pull r
 
 ## M9. Mobile apps
 
-**Goal:** iOS and Android apps that pass review.
+**Goal:** iOS and Android apps that pass review. The Android shell already exists from M3b; this milestone adds iOS and the store work.
 
-- Capacitor project in `/mobile` loading the production URL, with an offline fallback screen.
-- Native Google sign-in → `/api/auth/google`.
+- Add the iOS platform to `/mobile`, pointing both apps at the production URL.
+- Native Google sign-in on iOS → `/api/auth/google`.
 - Push notifications, share sheet, keep-awake in cooking mode, safe-area handling.
 - RevenueCat purchases with matching store products; RevenueCat webhook updates the same subscription record.
 - Store listing checklist: privacy labels, account deletion in the app, screenshots.
 
 **Done when:** TestFlight and Play internal testing builds can sign in, subscribe in sandbox and receive a push.
 
-> Starter prompt: "Start M9. Set up Capacitor in /mobile. Check current plugin options for native Google sign-in, push and RevenueCat before choosing. Explain what I need to do in Xcode, Android Studio and the store consoles."
+> Starter prompt: "Start M9. Add iOS to the Capacitor project in /mobile. Check current plugin options for push and RevenueCat before choosing. Explain what I need to do in Xcode, Android Studio and the store consoles."
 
 ---
 

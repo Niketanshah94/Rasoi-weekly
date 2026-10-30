@@ -8,7 +8,7 @@ Everything Claude Code needs to build the real Rasoi platform: the working proto
 |---|---|
 | `CLAUDE.md` | Standing instructions for Claude Code: product, architecture, conventions, what not to do |
 | `docs/PRODUCT_SPEC.md` | Every business rule from the prototype, written for developers |
-| `docs/BUILD_PLAN.md` | Ten milestones (M0 to M10), each with acceptance criteria and a starter prompt |
+| `docs/BUILD_PLAN.md` | Eleven milestones (M0 to M10, plus M3b for an early Android build), each with acceptance criteria and a starter prompt |
 | `prototype/index.html` | The clickable prototype. Open it in a browser; add `#admin` for the admin panel |
 | `data/*.json` | Seed data: 187 dishes, 147 ingredients, 13 weekly plans, 5 countries, pricing, reference lists |
 | `data/golden/plan_resolution.json` | 192 test cases recording exactly what the prototype produces, so the Laravel code can be checked against it |
@@ -29,6 +29,7 @@ Everything Claude Code needs to build the real Rasoi platform: the working proto
 | M3 | Google Cloud OAuth client (web, iOS, Android); an email sending service (Amazon SES, Postmark or Resend) |
 | M7 | Razorpay account with Subscriptions enabled (test mode first); Polar account with two products, monthly and yearly |
 | M8 | WhatsApp Business API provider account with Meta business verification; Firebase project for push |
+| M3b | A staging server the Android app can load (or a phone on the same Wi-Fi as your computer); an Android phone with developer mode on |
 | M9 | Apple Developer Program; Google Play Console; RevenueCat account with matching store products |
 | M10 | Hosting (Laravel Cloud or Forge), domain and admin subdomain, Sentry, PostHog |
 

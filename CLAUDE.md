@@ -17,7 +17,7 @@ Markets at launch: India, United States, United Kingdom, United Arab Emirates, S
 One Laravel application serves everything.
 
 - **Customer web app:** Laravel + Inertia.js + Vue 3 (Composition API, `<script setup>`) + Tailwind CSS. Mobile-first, installable (web manifest + service worker), feels like a native app. Served on the main domain.
-- **Mobile apps:** a Capacitor project in `/mobile` that loads the customer web app. Native plugins for Google sign-in, push notifications, share sheet, keep-awake and in-app purchases (RevenueCat). No separate mobile UI code.
+- **Mobile apps:** a Capacitor project in `/mobile` that loads the customer web app. Native plugins for Google sign-in, push notifications, share sheet, keep-awake and in-app purchases (RevenueCat). No separate mobile UI code: every customer screen is written once in Vue and ships to web, Android and iOS. The Android shell comes early (milestone M3b) so the app can be tested on a phone throughout the build; iOS follows in M9.
 - **Admin panel:** Filament, on its own subdomain (`admin.`), separate `staff` guard and staff table, role-based permissions. Web only.
 - **API:** `routes/api.php` with Sanctum tokens, used by the mobile shell (native Google sign-in token exchange, push device registration, RevenueCat entitlements) and by payment webhooks. Customer screens use Inertia controllers, not the API.
 - **Background work:** Redis queues with Horizon; the Laravel scheduler for trial reminders, pre-debit notices, Sunday plan messages and daily exchange rates.
