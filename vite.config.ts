@@ -3,7 +3,7 @@ import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
-import { bunny } from 'laravel-vite-plugin/fonts';
+import { google } from 'laravel-vite-plugin/fonts';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 
 export default defineConfig({
@@ -11,9 +11,17 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.ts'],
             refresh: true,
+            // The prototype's type: Figtree for text, Bricolage Grotesque for
+            // headings, Noto Sans Devanagari for Hindi names.
             fonts: [
-                bunny('Instrument Sans', {
-                    weights: [400, 500, 600],
+                google('Figtree', {
+                    weights: [400, 500, 600, 700],
+                }),
+                google('Bricolage Grotesque', {
+                    weights: [600, 800],
+                }),
+                google('Noto Sans Devanagari', {
+                    weights: [400, 600],
                 }),
             ],
         }),
@@ -69,6 +77,12 @@ export default defineConfig({
         ignorePatterns: [
             '.github/**',
             'composer.json',
+            // Handoff kit: source of truth, kept exactly as delivered.
+            'CLAUDE.md',
+            'README.md',
+            'data/**',
+            'docs/**',
+            'prototype/**',
             'resources/js/components/ui/*',
             'resources/views/mail/*',
         ],
