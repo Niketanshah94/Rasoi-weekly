@@ -45,6 +45,32 @@ One Laravel application serves everything.
 - Do not show beef or pork leave-out options in India; do show them elsewhere.
 - Do not let a dish that is not published reach any customer screen, plan or shopping list.
 
+## Stack versions (set in M0)
+
+Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with TypeScript, Tailwind 4, Filament 5, Pest 4, Sanctum 4, Horizon 5, PostgreSQL 16, Redis 7. Pest 5 needs PHP 8.4; move up together when the hosting and CI images are on 8.4.
+
+- The customer app came from the official Laravel Vue starter kit with only registration and login kept. Its password sign-in (Fortify) is temporary; M3 replaces it with Google and email links.
+- The admin panel and Horizon are served only on `ADMIN_DOMAIN` (locally `admin.localhost`), behind the `staff` guard and `staff` table. Only staff with the `owner` role can open Horizon.
+- Fonts match the prototype (Figtree, Bricolage Grotesque, Noto Sans Devanagari) and are downloaded at build time by the Vite fonts plugin.
+- `CLAUDE.md`, `README.md`, `data/`, `docs/` and `prototype/` are excluded from the front-end formatter: keep them exactly as delivered.
+
 ## Commands
 
-Fill this in once the project is scaffolded (install, dev server, tests, queue worker, Capacitor sync and run).
+| What | Command |
+|---|---|
+| First-time setup (installs, `.env`, key, migrate, build) | `composer setup` |
+| Dev server, queue, logs and Vite together | `composer dev` |
+| Customer app | http://localhost:8000 |
+| Admin panel | http://admin.localhost:8000 |
+| Horizon | http://admin.localhost:8000/horizon |
+| Create a staff login | `php artisan make:filament-user` (new staff are editors; set `role` to `owner` for Horizon) |
+| Queue worker on its own | `php artisan horizon` |
+| Everything CI runs (format, lint, types, Pint, PHPStan, Pest) | `composer ci:check` |
+| Tests only | `php artisan test` |
+| Fix PHP style | `composer lint` |
+| Fix front-end format and lint | `npm run check:fix` |
+| Production build | `npm run build` |
+
+Local services: PostgreSQL with databases `rasoi` and `rasoi_test` (user and password `rasoi`), and Redis on the default port. Tests run against `rasoi_test`.
+
+Capacitor commands (sync, run on Android) are added in M3b.
