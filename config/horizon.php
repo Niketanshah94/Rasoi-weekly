@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
-
 return [
 
     /*
@@ -28,7 +26,7 @@ return [
     |
     */
 
-    'domain' => env('HORIZON_DOMAIN'),
+    'domain' => env('HORIZON_DOMAIN', env('ADMIN_DOMAIN', 'admin.localhost')),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,10 +65,7 @@ return [
     |
     */
 
-    'prefix' => env(
-        'HORIZON_PREFIX',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_horizon:'
-    ),
+    'prefix' => env('HORIZON_PREFIX', 'rasoi_horizon:'),
 
     /*
     |--------------------------------------------------------------------------

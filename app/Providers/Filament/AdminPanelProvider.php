@@ -26,7 +26,10 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->domain(config('rasoi.admin_domain'))
+            ->path('')
+            ->authGuard('staff')
+            ->brandName('Rasoi admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
