@@ -64,6 +64,15 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - Prices are integer minor units (`Price::for()`); the yearly saving is calculated (`Price::yearlySavingPercent()`), not stored. `plan_templates.dish_country_id` is null for "own country", otherwise the country dishes come from (the Indian plan abroad).
 - `ContentSeeder` runs one seeder per data file. It only adds rows whose key is missing and never overwrites, so it is safe on a live database where staff have edited content. `DatabaseSeeder` creates the `test@example.com` user only in the local environment.
 
+## Admin panel (set in M2)
+
+- Filament resources: Dishes, Ingredients, Weekly plans (`/plans`), Countries (read only), Activity; plus the Pricing page. Content sits under "Content", pricing and countries under "Settings".
+- Roles come from `StaffRole`: owners do everything; editors manage dishes, ingredients and plans; support staff only look. Only owners change prices. Policies live in `app/Policies`; the role checks are `StaffRole::canEditContent()` and `canEditPricing()`.
+- Every admin change writes one plain-English line to the activity log (`spatie/laravel-activitylog` 4.x, log name `admin`) through `App\Filament\Support\AdminActivity::record()`, with the staff member as causer. Version 5 of the package needs PHP 8.4.
+- The healthy-day check (spec §6) is plain PHP in `app/Planning` (`Nutrition`, `HealthyDay`, `HealthCheck`) so the plan engine can reuse it. Fat and carb shares are rounded to whole percentages before comparing, as the prototype does.
+- New dishes and ingredients get a `key` from their English name and go last in order (`HasKeyFromName`). An ingredient's unit is locked while recipes use it. `Dish::dietOf()` and `allergensOf()` power the admin's live preview.
+- The plan editor offers live dishes for the meal from the plan's countries, or from India for the Indian plan abroad (`PlanTemplate::dishPool()`).
+
 ## Commands
 
 | What | Command |

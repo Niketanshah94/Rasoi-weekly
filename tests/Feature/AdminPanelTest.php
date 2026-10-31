@@ -3,11 +3,6 @@
 use App\Models\Staff;
 use App\Models\User;
 
-function adminUrl(string $path = '/'): string
-{
-    return 'http://'.config('rasoi.admin_domain').$path;
-}
-
 test('the admin host shows the Filament login', function () {
     $this->get(adminUrl('/login'))
         ->assertOk()
