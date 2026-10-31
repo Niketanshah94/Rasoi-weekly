@@ -72,7 +72,8 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 | Production build | `npm run build` |
 | Serve to your network for the phone (build, then serve on 0.0.0.0:8000) | `composer share` |
 | Android test app and tunnel setup | see `mobile/README.md` |
+| Host on an Ubuntu server (first setup, updates, domain) | see `deploy/README.md` |
 
 Local services: PostgreSQL with databases `rasoi` and `rasoi_test` (user and password `rasoi`), and Redis on the default port. Tests run against `rasoi_test`.
 
-The Android shell in `mobile/` was brought forward from M3b at the owner’s request: GitHub Actions builds a debug APK on every change under `mobile/` and publishes it as the `android-dev` pre-release. Until a staging server exists the app opens on a connect screen that asks for the server address (a tunnel to a computer, or a local IP). Native Google sign-in and App Links remain in M3b.
+The Android shell in `mobile/` was brought forward from M3b at the owner’s request: GitHub Actions builds a debug APK on every change under `mobile/` and publishes it as the `android-dev` pre-release. The app opens the server in the `RASOI_SERVER_URL` repository variable, falling back to a connect screen that asks for the address. The owner hosts on a Contabo Ubuntu 24.04 server set up with `deploy/provision.sh` (nginx, PHP-FPM as the `rasoi` user, PostgreSQL, Redis, Horizon under Supervisor, Let’s Encrypt), using an sslip.io name until a domain is connected. Native Google sign-in and App Links remain in M3b.
