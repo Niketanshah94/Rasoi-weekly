@@ -22,6 +22,7 @@ class ProfileController extends Controller
         return Inertia::render('settings/Profile', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => $request->session()->get('status'),
+            'country' => $request->user('web')?->country?->name,
         ]);
     }
 
@@ -33,11 +34,6 @@ class ProfileController extends Controller
         $user = $request->user('web');
 
         $user->fill($request->validated());
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
         $user->save();
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Profile updated.')]);
@@ -50,10 +46,12 @@ class ProfileController extends Controller
      */
     public function destroy(ProfileDeleteRequest $request): RedirectResponse
     {
-        $user = $request->user();
+        $user = $request->user('web');
 
-        Auth::logout();
+        Auth::guard('web')->logout();
 
+        // Mobile app tokens go with the account. Household, plans and subscriptions follow in later milestones.
+        $user->tokens()->delete();
         $user->delete();
 
         $request->session()->invalidate();

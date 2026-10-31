@@ -13,4 +13,11 @@ return [
     */
     'trusted_proxies' => env('TRUSTED_PROXIES'),
 
+    /*
+    | Temporary email-and-password sign-in from the starter kit. The product
+    | signs in with Google or an email link only (spec §1); keep this on only
+    | until Google and an email provider are set up.
+    */
+    'password_login' => (bool) env('PASSWORD_LOGIN', false),
+
 ];

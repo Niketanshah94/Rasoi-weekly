@@ -144,6 +144,7 @@ return [
 
     'features' => [
         Features::registration(),
+        // Closed by RequirePasswordLogin while temporary password sign-in is off.
         Features::resetPasswords(),
     ],
 
