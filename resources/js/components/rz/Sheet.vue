@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { onBack } from '@/lib/backButton';
 
 /**
  * The prototype's bottom sheet: a modal <dialog> that closes on Escape or a tap outside.
@@ -32,7 +33,25 @@ watch(
     { flush: 'post' },
 );
 
-onBeforeUnmount(() => dialog.value?.open && dialog.value.close());
+// Android back closes an open sheet instead of leaving the screen.
+let stopBack: (() => void) | undefined;
+onMounted(() => {
+    stopBack = onBack(() => {
+        if (!open.value) {
+            return false;
+        }
+        open.value = false;
+
+        return true;
+    });
+});
+
+onBeforeUnmount(() => {
+    stopBack?.();
+    if (dialog.value?.open) {
+        dialog.value.close();
+    }
+});
 
 function onClick(event: MouseEvent) {
     // A click on the dialog itself, outside the inner panel, is the backdrop.

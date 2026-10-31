@@ -4,6 +4,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
 import { initializeAppFeel } from '@/lib/appFeel';
+import { initializeBackButton } from '@/lib/backButton';
 import { initializeOffline } from '@/lib/offline';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -57,3 +58,6 @@ initializeOffline();
 
 // Splash, loader between screens and the offline banner.
 initializeAppFeel();
+
+// Android back button with native behaviour.
+initializeBackButton();

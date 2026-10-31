@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Head, router, useForm } from '@inertiajs/vue3';
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue';
 import HouseholdFields from '@/components/household/HouseholdFields.vue';
+import { onBack } from '@/lib/backButton';
 import { store } from '@/routes/onboarding';
 import type { CountryOption, HouseholdForm } from '@/types/household';
 
@@ -100,6 +101,17 @@ async function go(to: number) {
     await nextTick();
     heading.value?.focus();
 }
+
+// Android back goes to the previous step; on the first step it falls through to the app.
+const stopBack = onBack(() => {
+    if (index.value === 0) {
+        return false;
+    }
+    void go(index.value - 1);
+
+    return true;
+});
+onBeforeUnmount(stopBack);
 
 function next() {
     if (step.value === 'name' && !form.name.trim()) {
