@@ -7,6 +7,7 @@ use App\Enums\Diet;
 use App\Enums\DishStatus;
 use App\Enums\Meal;
 use App\Enums\Mood;
+use App\Models\Concerns\HasKeyFromName;
 use Database\Factories\DishFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -44,6 +46,8 @@ use Illuminate\Support\Collection;
  * @property-read Cuisine $cuisine
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Country> $countries
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Ingredient> $ingredients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, DishIngredient> $dishIngredients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, PlanTemplateItem> $planItems
  */
 #[Fillable([
     'key', 'name_en', 'name_hi', 'status', 'meals', 'mood', 'cuisine_id', 'prep_min', 'cook_min',
@@ -52,7 +56,7 @@ use Illuminate\Support\Collection;
 class Dish extends Model
 {
     /** @use HasFactory<DishFactory> */
-    use HasFactory;
+    use HasFactory, HasKeyFromName;
 
     /**
      * Get the attributes that should be cast.
@@ -108,6 +112,32 @@ class Dish extends Model
     }
 
     /**
+     * Recipe lines as rows, for editing quantities and order.
+     *
+     * @return HasMany<DishIngredient, $this>
+     */
+    public function dishIngredients(): HasMany
+    {
+        return $this->hasMany(DishIngredient::class)->orderBy('position');
+    }
+
+    /**
+     * @return HasMany<PlanTemplateItem, $this>
+     */
+    public function planItems(): HasMany
+    {
+        return $this->hasMany(PlanTemplateItem::class);
+    }
+
+    /**
+     * A dish used in a plan cannot be deleted, only hidden (spec §9).
+     */
+    public function isUsedInPlans(): bool
+    {
+        return $this->planItems()->exists();
+    }
+
+    /**
      * Only published dishes may reach a customer screen, plan or shopping list.
      *
      * @param  Builder<self>  $query
@@ -123,11 +153,7 @@ class Dish extends Model
      */
     public function diet(): Diet
     {
-        return match (true) {
-            $this->ingredients->contains(fn (Ingredient $ingredient) => $ingredient->isMeatOrFish()) => Diet::NonVeg,
-            $this->ingredients->contains(fn (Ingredient $ingredient) => $ingredient->isEgg()) => Diet::Egg,
-            default => Diet::Veg,
-        };
+        return self::dietOf($this->ingredients);
     }
 
     /**
@@ -138,7 +164,30 @@ class Dish extends Model
      */
     public function allergens(): Collection
     {
-        return $this->ingredients
+        return self::allergensOf($this->ingredients);
+    }
+
+    /**
+     * The diet rule on its own, for ingredients not yet saved to a dish (the admin's live preview).
+     *
+     * @param  Collection<int, Ingredient>  $ingredients
+     */
+    public static function dietOf(Collection $ingredients): Diet
+    {
+        return match (true) {
+            $ingredients->contains(fn (Ingredient $ingredient) => $ingredient->isMeatOrFish()) => Diet::NonVeg,
+            $ingredients->contains(fn (Ingredient $ingredient) => $ingredient->isEgg()) => Diet::Egg,
+            default => Diet::Veg,
+        };
+    }
+
+    /**
+     * @param  Collection<int, Ingredient>  $ingredients
+     * @return Collection<int, Allergen>
+     */
+    public static function allergensOf(Collection $ingredients): Collection
+    {
+        return $ingredients
             ->flatMap(fn (Ingredient $ingredient) => $ingredient->allergens)
             ->unique()
             ->values()

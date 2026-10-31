@@ -32,10 +32,15 @@ class Price extends Model
      */
     public static function yearlySavingPercent(PriceMarket $market): int
     {
-        $twelveMonths = self::for($market, BillingInterval::Monthly)->amount_minor * 12;
-        $yearly = self::for($market, BillingInterval::Yearly)->amount_minor;
+        return self::savingPercent(
+            self::for($market, BillingInterval::Monthly)->amount_minor,
+            self::for($market, BillingInterval::Yearly)->amount_minor,
+        );
+    }
 
-        return (int) round(($twelveMonths - $yearly) * 100 / $twelveMonths);
+    public static function savingPercent(int $monthlyMinor, int $yearlyMinor): int
+    {
+        return $monthlyMinor > 0 ? (int) round(($monthlyMinor * 12 - $yearlyMinor) * 100 / ($monthlyMinor * 12)) : 0;
     }
 
     /**

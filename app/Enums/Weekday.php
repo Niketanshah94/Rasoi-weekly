@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum Weekday: string
+use Filament\Support\Contracts\HasLabel;
+
+enum Weekday: string implements HasLabel
 {
     case Monday = 'mon';
     case Tuesday = 'tue';
@@ -11,4 +13,14 @@ enum Weekday: string
     case Friday = 'fri';
     case Saturday = 'sat';
     case Sunday = 'sun';
+
+    public function getLabel(): string
+    {
+        return $this->name;
+    }
+
+    public function shortLabel(): string
+    {
+        return ucfirst($this->value);
+    }
 }
