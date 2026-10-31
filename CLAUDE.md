@@ -110,6 +110,13 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - Free-tier gating arrives with billing in M7: `shell.hasAccess` is always true for now.
 - Every customer-facing page uses the Rasoi design, not the starter kit's: sign-in pages (`auth/*`, built on `components/rz/RzScreen.vue`), onboarding, and the Household, details and Appearance screens (`components/rz/AccountScreen.vue`). Only the password Security page and the admin panel keep other styles.
 
+## App feel
+
+- `resources/js/lib/appFeel.ts`: a splash (`#splash` in `app.blade.php`) shown only inside the Android app (user agent contains `RasoiApp`, set in `mobile/capacitor.config.json`, or Android WebView) or the installed web app; a spinner over the screen when a full page visit takes over 180 ms; and an offline banner that also replaces Inertia's network errors.
+- Inside the app, pinch-zoom is off and controls don't select as text; the website keeps zoom for accessibility. Screens ease in and controls press down (`rasoi.css` adjustments), both off with reduced motion.
+- `public/offline.html` is shown for any page that can't load offline; after sign-in the service worker also saves the whole front-end build (from `public/build/manifest.json`) so saved screens open with no connection.
+- Android: Rasoi launcher icons, a green launch screen (`res/drawable*/splash.png`, `windowSplashScreenBackground`) and a green WebView background. Changes under `mobile/` trigger a new APK build.
+
 ## Commands
 
 | What | Command |

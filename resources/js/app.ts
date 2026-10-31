@@ -3,6 +3,7 @@ import { initializeTheme } from '@/composables/useAppearance';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
+import { initializeAppFeel } from '@/lib/appFeel';
 import { initializeOffline } from '@/lib/offline';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -38,8 +39,10 @@ void createInertiaApp({
             },
         });
     },
+    // A Rasoi-green bar; the full loader is in lib/appFeel.ts.
     progress: {
-        color: '#4B5563',
+        color: '#2E6A3E',
+        delay: 150,
     },
 });
 
@@ -51,3 +54,6 @@ initializeFlashToast();
 
 // Installable app: offline copies of this week's plan and lists.
 initializeOffline();
+
+// Splash, loader between screens and the offline banner.
+initializeAppFeel();

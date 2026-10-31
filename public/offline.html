@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta name="theme-color" content="#2E6A3E" />
+        <title>You’re offline - Rasoi</title>
+        <style>
+            :root {
+                --ground: #f1f4f0;
+                --ink: #1b2620;
+                --muted: #55645a;
+                --leaf: #2e6a3e;
+                --leaf-ink: #fff;
+                --line: #d3dbd3;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --ground: #111713;
+                    --ink: #e8eee9;
+                    --muted: #a3b3a8;
+                    --leaf: #7cc48f;
+                    --leaf-ink: #0e1a12;
+                    --line: #2f3b34;
+                }
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                min-height: 100svh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--ground);
+                color: var(--ink);
+                font:
+                    16px/1.45 Figtree,
+                    system-ui,
+                    -apple-system,
+                    'Segoe UI',
+                    sans-serif;
+                padding: 24px 16px;
+                overscroll-behavior: none;
+            }
+            main {
+                max-width: 420px;
+                width: 100%;
+                text-align: center;
+            }
+            svg {
+                width: 72px;
+                height: 72px;
+            }
+            h1 {
+                font:
+                    800 28px/1.15 'Bricolage Grotesque',
+                    Figtree,
+                    system-ui,
+                    sans-serif;
+                letter-spacing: -0.02em;
+                margin: 18px 0 8px;
+            }
+            p {
+                color: var(--muted);
+                margin: 0 0 24px;
+            }
+            .btn {
+                display: block;
+                width: 100%;
+                min-height: 52px;
+                border-radius: 14px;
+                border: 1px solid var(--line);
+                font-family: inherit;
+                font-size: 16px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: var(--ink);
+                background: transparent;
+                margin-top: 10px;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .btn.primary {
+                background: var(--leaf);
+                border-color: var(--leaf);
+                color: var(--leaf-ink);
+            }
+            .btn:focus-visible {
+                outline: 3px solid #e3a21a;
+                outline-offset: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="48" fill="var(--leaf)" />
+                <g fill="none" stroke="var(--leaf-ink)" stroke-linecap="round">
+                    <circle cx="50" cy="50" r="26" stroke-width="6" />
+                    <circle cx="50" cy="50" r="12" stroke-width="6" />
+                </g>
+            </svg>
+            <h1>You’re offline</h1>
+            <p>
+                This page needs a connection. Your plan, shopping list and cook
+                view for this week are saved on this phone.
+            </p>
+            <button
+                class="btn primary"
+                type="button"
+                onclick="location.reload()"
+            >
+                Try again
+            </button>
+            <a class="btn" href="/plan">Open my saved week</a>
+        </main>
+    </body>
+</html>

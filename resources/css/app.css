@@ -174,3 +174,98 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* App feel (resources/js/lib/appFeel.ts): splash, loader between screens, offline banner. */
+#splash {
+    display: none;
+}
+.in-app #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: #2e6a3e;
+    color: #fff;
+    font-family: 'Bricolage Grotesque', Figtree, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    transition: opacity 0.35s ease;
+}
+.in-app #splash.gone {
+    opacity: 0;
+    pointer-events: none;
+}
+.rz-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, #f1f4f0 55%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+.dark .rz-loader {
+    background: color-mix(in srgb, #111713 55%, transparent);
+}
+.rz-loader.on {
+    opacity: 1;
+    pointer-events: auto;
+}
+.rz-loader-ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 4px solid color-mix(in srgb, #2e6a3e 20%, transparent);
+    border-top-color: #2e6a3e;
+    animation: rz-spin 0.8s linear infinite;
+}
+.dark .rz-loader-ring {
+    border-color: color-mix(in srgb, #7cc48f 20%, transparent);
+    border-top-color: #7cc48f;
+}
+@keyframes rz-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .rz-loader-ring {
+        animation-duration: 2.4s;
+    }
+}
+.rz-offline {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    z-index: 95;
+    max-width: 456px;
+    margin: 0 auto;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #1b2620;
+    color: #fff;
+    font:
+        600 14px/1.35 Figtree,
+        system-ui,
+        sans-serif;
+    text-align: center;
+    transform: translateY(-140%);
+    transition: transform 0.25s ease;
+}
+.rz-offline.on {
+    transform: none;
+}
+/* No rubber-band bounce or pull-to-refresh glow at the page edges. */
+html,
+body {
+    overscroll-behavior: none;
+}

@@ -2,7 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  @class(['dark' => ($appearance ?? 'system') == 'dark'])>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+        {{-- In the installed or Android app: a splash while loading, and no pinch-zoom, like a native app.
+             The website keeps zoom for accessibility. --}}
+        <script>
+            (function() {
+                var ua = navigator.userAgent || '';
+                var app = /\bwv\b|RasoiApp/.test(ua) || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+                if (!app) return;
+                document.documentElement.classList.add('in-app');
+                window.__splashAt = Date.now();
+                var vp = document.querySelector('meta[name=viewport]');
+                if (vp) vp.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');
+            })();
+        </script>
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
@@ -44,6 +58,10 @@
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased">
+        <div id="splash" aria-hidden="true">
+            <svg viewBox="0 0 100 100" width="84" height="84"><g fill="none" stroke="#fff" stroke-linecap="round"><circle cx="50" cy="50" r="30" stroke-width="7"/><circle cx="50" cy="50" r="14" stroke-width="7"/></g></svg>
+            <span>Rasoi</span>
+        </div>
         <x-inertia::app />
     </body>
 </html>
