@@ -82,6 +82,15 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - `PASSWORD_LOGIN=true` turns the starter kit's password sign-up, log-in, reset and Security settings back on; `RequirePasswordLogin` returns 404 for those routes when it is off. Tests run with it on, and switch it off where they check the product's sign-in.
 - The account page edits the name only; the email is shown, not edited. Deleting an account needs no password (customers have none) and removes its API tokens.
 
+## Households (set in M4)
+
+- `households` holds country, who cooks, people (1 to 12), non-veg eaters, whether the others eat eggs, leave-outs, plan style and cook details; `household_user` links members with an `owner` or `member` role (one household per person for now). `User::household()` queries it fresh each call.
+- `DietMode::for()` and `LeaveOut` (dairy, gluten, nuts, beef, pork; beef and pork only outside India; nuts covers tree nuts and peanuts) implement spec §3, using the same keys as the golden fixtures.
+- Onboarding (`/onboarding`) follows the prototype's steps and saves everything at the end; `EnsureHouseholdIsSetUp` (alias `household`) sends anyone without a household there. Household settings (`/settings/household`) edit the same fields through the same `HouseholdRequest`, including the country. Cook details are dropped when the household cooks for itself.
+- The plan-style step shows each template's Monday breakfast, lunch and dinner as written; M5 swaps in the resolved week.
+- Deleting an account deletes a household nobody else is in.
+- Tests: `Tests\TestCase` seeds `ContentSeeder` once per run when `RefreshDatabase` migrates, so content is always there and tests don't seed it themselves.
+
 ## Commands
 
 | What | Command |

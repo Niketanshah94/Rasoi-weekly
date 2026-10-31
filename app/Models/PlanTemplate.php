@@ -33,6 +33,18 @@ use Illuminate\Support\Carbon;
 class PlanTemplate extends Model
 {
     /**
+     * Plans offered in a country, in data order: the first is the default.
+     *
+     * @return Collection<int, PlanTemplate>
+     */
+    public static function offeredIn(Country $country): Collection
+    {
+        return self::whereHas('countries', fn (Builder $query) => $query->whereKey($country->id))
+            ->orderBy('position')
+            ->get();
+    }
+
+    /**
      * The countries this plan is offered in.
      *
      * @return BelongsToMany<Country, $this>

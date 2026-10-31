@@ -2,7 +2,6 @@
 
 use App\Auth\GoogleIdTokenVerifier;
 use App\Models\User;
-use Database\Seeders\CountrySeeder;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Http;
 
@@ -11,7 +10,6 @@ use Illuminate\Support\Facades\Http;
  * served as Google's key set, so the real verification runs without the network.
  */
 beforeEach(function () {
-    $this->seed(CountrySeeder::class);
     config(['services.google.client_id' => 'web-client', 'services.google.android_client_id' => 'android-client']);
 
     $this->googleKey = openssl_pkey_new(['private_key_bits' => 2048, 'private_key_type' => OPENSSL_KEYTYPE_RSA]);

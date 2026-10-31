@@ -5,13 +5,11 @@ use App\Filament\Resources\Ingredients\Pages\CreateIngredient;
 use App\Filament\Resources\Ingredients\Pages\EditIngredient;
 use App\Models\Ingredient;
 use App\Models\Staff;
-use Database\Seeders\ContentSeeder;
 use Filament\Facades\Filament;
 use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function () {
-    $this->seed(ContentSeeder::class);
     Filament::setCurrentPanel('admin');
 });
 

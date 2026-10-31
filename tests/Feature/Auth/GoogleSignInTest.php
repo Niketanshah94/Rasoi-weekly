@@ -1,13 +1,11 @@
 <?php
 
 use App\Models\User;
-use Database\Seeders\CountrySeeder;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\GoogleProvider;
 use Laravel\Socialite\Two\User as SocialiteUser;
 
 beforeEach(function () {
-    $this->seed(CountrySeeder::class);
     config(['services.google.client_id' => 'web-client', 'services.google.client_secret' => 'secret', 'services.google.redirect' => 'http://localhost/auth/google/callback']);
 });
 

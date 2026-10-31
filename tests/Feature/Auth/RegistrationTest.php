@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Database\Seeders\CountrySeeder;
 use Laravel\Fortify\Features;
 
 beforeEach(function () {
@@ -15,7 +14,6 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register with a password and a country while password sign-in is on', function () {
-    $this->seed(CountrySeeder::class);
 
     $response = $this->post(route('register.store'), [
         'name' => 'Test User',

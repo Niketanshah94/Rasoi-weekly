@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Household\HouseholdController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::middleware(['auth', 'verified', 'household'])->group(function () {
+    Route::get('settings/household', [HouseholdController::class, 'edit'])->name('household.edit');
+    Route::patch('settings/household', [HouseholdController::class, 'update'])->name('household.update');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

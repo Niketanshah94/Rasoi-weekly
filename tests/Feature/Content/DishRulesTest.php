@@ -2,7 +2,6 @@
 
 use App\Enums\DishStatus;
 use App\Models\Dish;
-use Database\Seeders\ContentSeeder;
 use Illuminate\Database\QueryException;
 
 test('only published dishes count as published', function () {
@@ -10,11 +9,12 @@ test('only published dishes count as published', function () {
     Dish::factory()->status(DishStatus::Draft)->create();
     Dish::factory()->status(DishStatus::Hidden)->create();
 
-    expect(Dish::published()->pluck('id')->all())->toBe([$live->id]);
+    $made = Dish::latest('id')->limit(3)->pluck('id');
+
+    expect(Dish::published()->whereKey($made)->pluck('id')->all())->toBe([$live->id]);
 });
 
 test('a dish used in a plan cannot be deleted', function () {
-    $this->seed(ContentSeeder::class);
 
     Dish::where('key', 'poha')->firstOrFail()->delete();
 })->throws(QueryException::class);

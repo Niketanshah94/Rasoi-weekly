@@ -7,8 +7,6 @@ use App\Models\Ingredient;
 use App\Models\PlanTemplate;
 use Database\Seeders\ContentSeeder;
 
-beforeEach(fn () => $this->seed(ContentSeeder::class));
-
 test('a fresh seed loads all the delivered content', function () {
     expect(Country::count())->toBe(5)
         ->and(Cuisine::count())->toBe(17)
