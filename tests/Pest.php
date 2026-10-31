@@ -44,7 +44,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * A file from data/, decoded, for checking the database against what was delivered.
+ *
+ * @return array<mixed>
+ */
+function seedData(string $file): array
 {
-    // ..
+    return json_decode(file_get_contents(base_path("data/{$file}")), true, flags: JSON_THROW_ON_ERROR);
 }
