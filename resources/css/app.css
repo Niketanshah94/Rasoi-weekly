@@ -269,3 +269,29 @@ html,
 body {
     overscroll-behavior: none;
 }
+
+/* "Press back again to close Rasoi" (lib/backButton.ts). */
+.rz-exit-toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 84px);
+    z-index: 95;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #1b2620;
+    color: #fff;
+    font:
+        600 14px/1.3 Figtree,
+        system-ui,
+        sans-serif;
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+.rz-exit-toast.on {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
