@@ -17,6 +17,7 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return $this->profileRules($this->user()->id);
+        // The email is proven at sign-in, so it isn't edited here.
+        return ['name' => $this->nameRules()];
     }
 }

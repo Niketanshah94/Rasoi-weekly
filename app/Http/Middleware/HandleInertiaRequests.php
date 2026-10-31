@@ -41,6 +41,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            // Temporary password sign-in (config rasoi.password_login); hides the Security settings when off.
+            'passwordLogin' => (bool) config('rasoi.password_login'),
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

@@ -2,14 +2,11 @@
 
 namespace App\Http\Requests\Settings;
 
-use App\Concerns\PasswordValidationRules;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileDeleteRequest extends FormRequest
 {
-    use PasswordValidationRules;
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -17,8 +14,7 @@ class ProfileDeleteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'password' => $this->currentPasswordRules(),
-        ];
+        // Customers have no password; the confirmation sheet is the safeguard, as in the prototype.
+        return [];
     }
 }
