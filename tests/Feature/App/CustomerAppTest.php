@@ -176,3 +176,12 @@ test('every page links the web app manifest and the app icons exist', function (
         ->and(collect($manifest['icons'])->every(fn ($icon) => is_file(public_path(ltrim($icon['src'], '/')))))->toBeTrue()
         ->and(is_file(public_path('sw.js')))->toBeTrue();
 });
+
+test('the app shell has the splash and the offline screen is ready for the service worker', function () {
+    $this->get('/login')
+        ->assertSee('id="splash"', false)
+        ->assertSee('RasoiApp', false);
+
+    expect(file_get_contents(public_path('sw.js')))->toContain("OFFLINE_PAGE = '/offline.html'")
+        ->and(file_get_contents(public_path('offline.html')))->toContain('You’re offline');
+});

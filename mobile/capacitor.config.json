@@ -6,5 +6,9 @@
         "androidScheme": "https",
         "allowNavigation": ["*"],
         "cleartext": true
+    },
+    "backgroundColor": "#2E6A3E",
+    "android": {
+        "appendUserAgent": "RasoiApp"
     }
 }

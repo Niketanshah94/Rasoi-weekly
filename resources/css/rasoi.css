@@ -2871,3 +2871,87 @@
     color: var(--leaf-ink);
     font-size: 22px;
 }
+/* Native feel: no grey tap flash or double-tap zoom delay; controls press down; screens ease in. */
+.rz {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.rz
+    :is(
+        button,
+        .btn,
+        .nav,
+        .top,
+        .a-top,
+        .day,
+        .chip,
+        .option,
+        .meal,
+        .lib-card,
+        .lrow,
+        .swap-opt,
+        .plan,
+        .hday,
+        .seg,
+        .stepper
+    ) {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+.rz
+    :is(
+        .btn,
+        .meal,
+        .lib-card,
+        .option,
+        .chip,
+        .day,
+        .lrow,
+        .swap-opt,
+        .plan,
+        .hday,
+        .icon-btn,
+        .avatar,
+        .nav button,
+        .stepper button
+    ) {
+    transition: transform 0.12s ease;
+}
+.rz
+    :is(
+        .btn,
+        .meal,
+        .lib-card,
+        .option,
+        .chip,
+        .day,
+        .lrow,
+        .swap-opt,
+        .plan,
+        .hday,
+        .icon-btn,
+        .avatar,
+        .nav button,
+        .stepper button
+    ):active:not(:disabled) {
+    transform: scale(0.97);
+}
+@keyframes rzEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .rz main,
+    .rz .screen,
+    .rz .landing,
+    .rz .legal {
+        animation: rzEnter 0.22s ease-out;
+    }
+}
