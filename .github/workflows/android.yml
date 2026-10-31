@@ -46,6 +46,19 @@ jobs:
       - name: Install Capacitor
         run: npm ci
 
+      - name: Set the server the app opens
+        env:
+          RASOI_SERVER_URL: ${{ vars.RASOI_SERVER_URL }}
+        run: |
+          if [ -n "$RASOI_SERVER_URL" ]; then
+            if ! printf '%s' "$RASOI_SERVER_URL" | grep -Eq '^https?://[A-Za-z0-9.-]+(:[0-9]+)?/?$'; then
+              echo "RASOI_SERVER_URL must look like https://rasoi.example.com" >&2
+              exit 1
+            fi
+            printf "window.RASOI_SERVER = '%s';\n" "$RASOI_SERVER_URL" > www/config.js
+          fi
+          cat www/config.js
+
       - name: Sync web assets into the Android project
         run: npx cap sync android
 
@@ -66,10 +79,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          RASOI_SERVER_URL: ${{ vars.RASOI_SERVER_URL }}
         run: |
           gh release delete android-dev --cleanup-tag --yes || true
           gh release create android-dev rasoi-test-${{ github.run_number }}.apk \
             --prerelease \
             --target "$GITHUB_SHA" \
             --title "Android test build ${{ github.run_number }}" \
-            --notes "Test build ${{ github.run_number }} from \`${GITHUB_REF_NAME}\` at ${GITHUB_SHA::7}. Open this page on your Android phone, download the APK and install it."
+            --notes "Test build ${{ github.run_number }} from \`${GITHUB_REF_NAME}\` at ${GITHUB_SHA::7}. Opens ${RASOI_SERVER_URL:-the connect screen}. Open this page on your Android phone, download the APK and install it."

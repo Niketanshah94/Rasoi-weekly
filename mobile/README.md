@@ -2,7 +2,9 @@
 
 The Android (and later iOS) app is a Capacitor shell around the customer web app. There’s no separate mobile UI code: the phone shows the same Vue screens as the website.
 
-For now the app opens on a small **connect screen** that asks for the server address, so one build works with any server: a tunnel from your computer today, staging and production later.
+The app opens the server set in the `RASOI_SERVER_URL` repository variable (GitHub → Settings → Secrets and variables → Actions → Variables). If that’s empty, or the server can’t be reached, it shows a **connect screen** that asks for the address and remembers it. An address typed in by hand is used until a build with a different `RASOI_SERVER_URL` is installed.
+
+To host the server, see `deploy/README.md`. The tunnel steps below are for running it on your own computer instead.
 
 ## Install the test app on your Android phone
 
@@ -44,7 +46,7 @@ You can also start a build by hand: **Actions → android → Run workflow**.
 
 4. Open the Rasoi app on your phone, enter that address and tap **Open Rasoi**. The app remembers it.
 
-Quick tunnel addresses change every time you restart `cloudflared`. When that happens, close and reopen the app and enter the new address.
+Quick tunnel addresses change every time you restart `cloudflared`. When that happens, reopen the app: it can’t reach the old address, so it shows the connect screen, where you enter the new one.
 
 **Same Wi‑Fi instead of a tunnel:** run `composer share`, find your computer’s local IP address (for example `192.168.1.20`), and enter `http://192.168.1.20:8000` in the app. Your computer’s firewall must allow port 8000.
 

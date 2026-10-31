@@ -128,7 +128,7 @@
         <main>
             <span class="tag">Test build</span>
             <h1>Rasoi</h1>
-            <p>Connect to the Rasoi server running on your computer.</p>
+            <p>Connect to your Rasoi server.</p>
 
             <form class="card" id="connect" novalidate>
                 <label for="server">Server address</label>
@@ -140,7 +140,7 @@
                     autocomplete="url"
                     autocapitalize="off"
                     spellcheck="false"
-                    placeholder="https://your-tunnel.trycloudflare.com"
+                    placeholder="https://rasoi.example.com"
                     required
                 />
                 <p class="hint">
@@ -151,6 +151,7 @@
                 <button type="submit" id="open">Open Rasoi</button>
             </form>
         </main>
+        <script src="config.js"></script>
         <script>
             (function () {
                 var KEY = 'rasoi.server';
@@ -159,17 +160,22 @@
                 var error = document.getElementById('error');
                 var button = document.getElementById('open');
 
-                function read() {
+                function readKey(key) {
                     try {
-                        return localStorage.getItem(KEY) || '';
+                        return localStorage.getItem(key) || '';
                     } catch (e) {
                         return '';
                     }
                 }
 
+                function read() {
+                    return readKey(KEY);
+                }
+
                 function write(value) {
                     try {
                         localStorage.setItem(KEY, value);
+                        localStorage.setItem(KEY + '.default', DEFAULT);
                     } catch (e) {}
                 }
 
@@ -185,20 +191,20 @@
                     }
                 }
 
-                input.value = read();
+                var DEFAULT = normalise(window.RASOI_SERVER || '');
 
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    error.textContent = '';
-
-                    var origin = normalise(input.value);
-                    if (!origin) {
-                        error.textContent =
-                            'Enter a server address, like https://example.trycloudflare.com.';
-                        input.focus();
-                        return;
+                // A server typed in by hand wins until the build's default changes.
+                function initial() {
+                    var saved = read();
+                    var savedDefault = readKey(KEY + '.default');
+                    if (saved && (!DEFAULT || savedDefault === DEFAULT)) {
+                        return saved;
                     }
+                    return DEFAULT || saved;
+                }
 
+                function connect(origin) {
+                    error.textContent = '';
                     button.disabled = true;
                     button.textContent = 'Connecting…';
 
@@ -214,18 +220,38 @@
                         timeout,
                     ])
                         .then(function () {
-                            write(origin);
                             window.location.href = origin + '/';
                         })
                         .catch(function () {
                             error.textContent =
                                 'Couldn’t reach ' +
                                 origin +
-                                '. Check the server and the tunnel are running.';
+                                '. Check your internet connection and that the server is running.';
                             button.disabled = false;
                             button.textContent = 'Open Rasoi';
                         });
+                }
+
+                input.value = initial();
+
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    var origin = normalise(input.value);
+                    if (!origin) {
+                        error.textContent =
+                            'Enter a server address, like https://rasoi.example.com.';
+                        input.focus();
+                        return;
+                    }
+
+                    write(origin);
+                    connect(origin);
                 });
+
+                if (input.value) {
+                    connect(normalise(input.value));
+                }
             })();
         </script>
     </body>
