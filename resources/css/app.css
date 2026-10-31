@@ -2,6 +2,9 @@
 
 @import 'tw-animate-css';
 
+/* The customer app's look, ported from the prototype and scoped under .rz. */
+@import './rasoi.css';
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
