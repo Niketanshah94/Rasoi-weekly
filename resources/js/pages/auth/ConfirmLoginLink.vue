@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import { Form, Head } from '@inertiajs/vue3';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
+import { computed } from 'vue';
+import RzScreen from '@/components/rz/RzScreen.vue';
 import { login } from '@/routes';
-
-defineOptions({
-    layout: {
-        title: 'Rasoi',
-        description: '',
-    },
-});
 
 const props = defineProps<{
     email: string;
@@ -19,43 +12,44 @@ const props = defineProps<{
     action: string;
 }>();
 
-const signingUp = props.intent === 'signup';
+const signingUp = computed(() => props.intent === 'signup');
 </script>
 
 <template>
     <Head :title="signingUp ? 'Activate your account' : 'Log in'" />
 
-    <div v-if="usable" class="flex flex-col gap-6 text-center">
-        <h2 class="text-xl font-semibold">
-            {{ signingUp ? 'Activate your account' : 'Log in to Rasoi' }}
-        </h2>
-        <p class="text-muted-foreground">
+    <RzScreen
+        v-if="usable"
+        :title="signingUp ? 'Activate your account' : 'Log in to Rasoi'"
+    >
+        <p class="s-sub">
             {{ signingUp ? 'Create your account as' : 'You’re logging in as' }}
-            <b class="text-foreground">{{ email }}</b
+            <b>{{ email }}</b
             >.
         </p>
         <Form :action="action" method="post" v-slot="{ processing }">
-            <Button
+            <button
                 type="submit"
-                size="lg"
-                class="w-full"
+                class="btn primary big wide"
+                style="margin-top: 22px"
                 :disabled="processing"
                 data-test="confirm-login-link"
             >
-                <Spinner v-if="processing" />
                 {{ signingUp ? 'Activate my account' : 'Log in' }}
-            </Button>
+            </button>
         </Form>
-    </div>
+    </RzScreen>
 
-    <div v-else class="flex flex-col gap-6 text-center">
-        <h2 class="text-xl font-semibold">This link has expired</h2>
-        <p class="text-muted-foreground">
-            Login links work once, for 15 minutes. Get a new one and open it on
-            this device.
-        </p>
-        <Button as-child size="lg" class="w-full">
-            <a :href="login.url({ query: { email } })">Get a new link</a>
-        </Button>
-    </div>
+    <RzScreen
+        v-else
+        title="This link has expired"
+        sub="Login links work once, for 15 minutes. Get a new one and open it on this device."
+    >
+        <a
+            :href="login.url({ query: { email } })"
+            class="btn primary big wide"
+            style="margin-top: 22px"
+            >Get a new link</a
+        >
+    </RzScreen>
 </template>

@@ -1,25 +1,14 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
+import { Form, Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import GoogleButton from '@/components/GoogleButton.vue';
-import InputError from '@/components/InputError.vue';
-import PasswordInput from '@/components/PasswordInput.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
+import PasswordFields from '@/components/rz/PasswordFields.vue';
+import RzScreen from '@/components/rz/RzScreen.vue';
+import Status from '@/components/rz/Status.vue';
 import { countryFromTimeZone } from '@/lib/country';
 import { login } from '@/routes';
+import { redirect as google } from '@/routes/google';
 import { signup as sendActivationLink } from '@/routes/login-link';
 import { store } from '@/routes/register';
-
-defineOptions({
-    layout: {
-        title: 'Create your account',
-        description: 'Start with Google or your email. No password needed.',
-    },
-});
 
 const props = defineProps<{
     countries: { code: string; name: string }[];
@@ -36,47 +25,48 @@ const country = ref(countryFromTimeZone(props.countries.map((c) => c.code)));
 <template>
     <Head title="Create your account" />
 
-    <p
-        v-if="status"
-        class="mb-4 text-center text-sm font-medium text-green-700 dark:text-green-400"
-        role="status"
+    <RzScreen
+        title="Create your account"
+        sub="Start with Google or your email. No password needed."
+        back="/"
     >
-        {{ status }}
-    </p>
+        <Status :message="status" />
 
-    <div class="flex flex-col gap-6">
-        <div class="grid gap-2">
-            <Label for="country">Country</Label>
-            <select
-                id="country"
-                v-model="country"
-                autocomplete="country"
-                class="h-11 rounded-md border border-input bg-background px-3 text-base"
-            >
+        <label class="field">
+            <span class="field-label">Country</span>
+            <select v-model="country" class="input" autocomplete="country">
                 <option v-for="c in countries" :key="c.code" :value="c.code">
                     {{ c.name }}
                 </option>
             </select>
-            <p class="text-sm text-muted-foreground">
-                Your weekly plans, dishes and prices are set for this country.
-            </p>
-        </div>
+        </label>
+        <p class="fine" style="margin-top: 6px">
+            Your weekly plans, dishes and prices are set for this country.
+        </p>
 
         <template v-if="googleEnabled">
-            <GoogleButton :country="country" />
-            <p class="text-center text-sm text-muted-foreground">or</p>
+            <a
+                :href="google.url({ query: { country } })"
+                class="btn primary big wide"
+                style="margin-top: 22px"
+                data-test="google-button"
+                >Continue with Google</a
+            >
+            <div class="or">or</div>
         </template>
 
         <Form
             v-bind="sendActivationLink.form()"
             v-slot="{ errors, processing }"
-            class="grid gap-4"
         >
             <input type="hidden" name="country" :value="country" />
-            <div class="grid gap-2">
-                <Label for="email">Email address</Label>
-                <Input
-                    id="email"
+            <label
+                class="field"
+                :style="googleEnabled ? 'margin-top: 0' : undefined"
+            >
+                <span class="field-label">Email address</span>
+                <input
+                    class="input"
                     type="email"
                     name="email"
                     inputmode="email"
@@ -84,85 +74,105 @@ const country = ref(countryFromTimeZone(props.countries.map((c) => c.code)));
                     autocapitalize="none"
                     spellcheck="false"
                     placeholder="you@example.com"
-                    :default-value="email"
+                    :value="email"
                     required
                 />
-                <InputError :message="errors.email ?? errors.country" />
-            </div>
-            <Button
+            </label>
+            <p v-if="errors.email || errors.country" class="err">
+                {{ errors.email ?? errors.country }}
+            </p>
+            <button
                 type="submit"
-                size="lg"
-                variant="outline"
+                class="btn big wide"
+                :class="{ primary: !googleEnabled }"
+                style="margin-top: 14px"
                 :disabled="processing"
                 data-test="send-activation-link"
             >
-                <Spinner v-if="processing" />
                 Email me an activation link
-            </Button>
+            </button>
         </Form>
 
-        <details v-if="passwordLogin" class="rounded-lg border p-4 text-sm">
-            <summary class="cursor-pointer font-medium">
-                Sign up with a password instead
-            </summary>
+        <PasswordFields
+            v-if="passwordLogin"
+            summary="Sign up with a password instead"
+        >
             <Form
                 v-bind="store.form()"
                 :reset-on-success="['password', 'password_confirmation']"
                 v-slot="{ errors, processing }"
-                class="mt-4 grid gap-4"
             >
                 <input type="hidden" name="country" :value="country" />
-                <div class="grid gap-2">
-                    <Label for="name">Name</Label>
-                    <Input id="name" name="name" autocomplete="name" required />
-                    <InputError :message="errors.name" />
-                </div>
-                <div class="grid gap-2">
-                    <Label for="password-email">Email address</Label>
-                    <Input
+                <label class="field">
+                    <span class="field-label">Your name</span>
+                    <input
+                        id="name"
+                        class="input"
+                        name="name"
+                        autocomplete="given-name"
+                        required
+                    />
+                </label>
+                <p v-if="errors.name" class="err">{{ errors.name }}</p>
+                <label class="field">
+                    <span class="field-label">Email address</span>
+                    <input
                         id="password-email"
+                        class="input"
                         type="email"
                         name="email"
                         autocomplete="email"
+                        autocapitalize="none"
                         required
                     />
-                    <InputError :message="errors.email ?? errors.country" />
-                </div>
-                <div class="grid gap-2">
-                    <Label for="password">Password</Label>
-                    <PasswordInput
+                </label>
+                <p v-if="errors.email || errors.country" class="err">
+                    {{ errors.email ?? errors.country }}
+                </p>
+                <label class="field">
+                    <span class="field-label">Password</span>
+                    <input
                         id="password"
+                        class="input"
+                        type="password"
                         name="password"
                         autocomplete="new-password"
                         :passwordrules="passwordRules"
                         required
                     />
-                    <InputError :message="errors.password" />
-                </div>
-                <div class="grid gap-2">
-                    <Label for="password_confirmation">Confirm password</Label>
-                    <PasswordInput
+                </label>
+                <p v-if="errors.password" class="err">{{ errors.password }}</p>
+                <label class="field">
+                    <span class="field-label">Confirm password</span>
+                    <input
                         id="password_confirmation"
+                        class="input"
+                        type="password"
                         name="password_confirmation"
                         autocomplete="new-password"
                         required
                     />
-                    <InputError :message="errors.password_confirmation" />
-                </div>
-                <Button
+                </label>
+                <button
                     type="submit"
+                    class="btn primary big wide"
+                    style="margin-top: 14px"
                     :disabled="processing"
                     data-test="register-user-button"
                 >
-                    <Spinner v-if="processing" />
                     Create account
-                </Button>
+                </button>
             </Form>
-        </details>
+        </PasswordFields>
 
-        <p class="text-center text-sm text-muted-foreground">
+        <p class="fine center">
             Already have an account?
-            <TextLink :href="login()">Log in</TextLink>
+            <Link :href="login()" class="linkbtn">Log in</Link>
         </p>
-    </div>
+        <p class="fine center">
+            By continuing, you agree to our
+            <Link href="/legal/terms" class="linkbtn">Terms</Link> and
+            <Link href="/legal/privacy" class="linkbtn">Privacy Policy</Link>.
+        </p>
+    </RzScreen>
 </template>

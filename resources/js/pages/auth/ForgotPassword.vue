@@ -1,66 +1,48 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
-import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import RzScreen from '@/components/rz/RzScreen.vue';
+import Status from '@/components/rz/Status.vue';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
 
-defineOptions({
-    layout: {
-        title: 'Forgot password',
-        description: 'Enter your email to receive a password reset link',
-    },
-});
-
-defineProps<{
-    status?: string;
-}>();
+defineProps<{ status?: string }>();
 </script>
 
 <template>
     <Head title="Forgot password" />
 
-    <div
-        v-if="status"
-        class="mb-4 text-center text-sm font-medium text-green-600"
+    <RzScreen
+        title="Forgot your password?"
+        sub="Enter your email and we’ll send a link to choose a new one."
+        :back="login.url()"
     >
-        {{ status }}
-    </div>
-
-    <div class="space-y-6">
+        <Status :message="status" />
         <Form v-bind="email.form()" v-slot="{ errors, processing }">
-            <div class="grid gap-2">
-                <Label for="email">Email address</Label>
-                <Input
-                    id="email"
+            <label class="field">
+                <span class="field-label">Email address</span>
+                <input
+                    class="input"
                     type="email"
                     name="email"
-                    autocomplete="off"
-                    v-focus
-                    placeholder="email@example.com"
+                    autocomplete="email"
+                    autocapitalize="none"
+                    placeholder="you@example.com"
+                    required
                 />
-                <InputError :message="errors.email" />
-            </div>
-
-            <div class="my-6 flex items-center justify-start">
-                <Button
-                    class="w-full"
-                    :disabled="processing"
-                    data-test="email-password-reset-link-button"
-                >
-                    <Spinner v-if="processing" />
-                    Email password reset link
-                </Button>
-            </div>
+            </label>
+            <p v-if="errors.email" class="err">{{ errors.email }}</p>
+            <button
+                type="submit"
+                class="btn primary big wide"
+                style="margin-top: 14px"
+                :disabled="processing"
+                data-test="email-password-reset-link-button"
+            >
+                Email me a reset link
+            </button>
         </Form>
-
-        <div class="space-x-1 text-center text-sm text-muted-foreground">
-            <span>Or, return to</span>
-            <TextLink :href="login()">log in</TextLink>
-        </div>
-    </div>
+        <p class="fine center">
+            Remembered it? <Link :href="login()" class="linkbtn">Log in</Link>
+        </p>
+    </RzScreen>
 </template>

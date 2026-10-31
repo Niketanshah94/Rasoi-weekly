@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
-import GoogleButton from '@/components/GoogleButton.vue';
-import InputError from '@/components/InputError.vue';
-import PasswordInput from '@/components/PasswordInput.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import PasswordFields from '@/components/rz/PasswordFields.vue';
+import RzScreen from '@/components/rz/RzScreen.vue';
+import Status from '@/components/rz/Status.vue';
 import { register } from '@/routes';
+import { redirect as google } from '@/routes/google';
 import { store } from '@/routes/login';
 import { login as sendLoginLink } from '@/routes/login-link';
 import { request } from '@/routes/password';
-
-defineOptions({
-    layout: {
-        title: 'Welcome back',
-        description: 'Log in with Google, or get a login link by email.',
-    },
-});
 
 defineProps<{
     status?: string;
@@ -32,29 +21,32 @@ defineProps<{
 <template>
     <Head title="Log in" />
 
-    <p
-        v-if="status"
-        class="mb-4 text-center text-sm font-medium text-green-700 dark:text-green-400"
-        role="status"
+    <RzScreen
+        title="Welcome back"
+        sub="Log in with Google, or get a login link by email."
+        back="/"
     >
-        {{ status }}
-    </p>
+        <Status :message="status" />
 
-    <div class="flex flex-col gap-6">
         <template v-if="googleEnabled">
-            <GoogleButton />
-            <p class="text-center text-sm text-muted-foreground">or</p>
+            <a
+                :href="google.url()"
+                class="btn primary big wide"
+                style="margin-top: 22px"
+                data-test="google-button"
+                >Continue with Google</a
+            >
+            <div class="or">or</div>
         </template>
 
-        <Form
-            v-bind="sendLoginLink.form()"
-            v-slot="{ errors, processing }"
-            class="grid gap-4"
-        >
-            <div class="grid gap-2">
-                <Label for="email">Email address</Label>
-                <Input
-                    id="email"
+        <Form v-bind="sendLoginLink.form()" v-slot="{ errors, processing }">
+            <label
+                class="field"
+                :style="googleEnabled ? 'margin-top: 0' : undefined"
+            >
+                <span class="field-label">Email address</span>
+                <input
+                    class="input"
                     type="email"
                     name="email"
                     inputmode="email"
@@ -62,78 +54,81 @@ defineProps<{
                     autocapitalize="none"
                     spellcheck="false"
                     placeholder="you@example.com"
-                    :default-value="email"
+                    :value="email"
                     required
                 />
-                <InputError :message="errors.email" />
-            </div>
-            <Button
+            </label>
+            <p v-if="errors.email" class="err">{{ errors.email }}</p>
+            <button
                 type="submit"
-                size="lg"
-                variant="outline"
+                class="btn big wide"
+                :class="{ primary: !googleEnabled }"
+                style="margin-top: 14px"
                 :disabled="processing"
                 data-test="send-login-link"
             >
-                <Spinner v-if="processing" />
                 Email me a login link
-            </Button>
+            </button>
         </Form>
 
-        <details v-if="passwordLogin" class="rounded-lg border p-4 text-sm">
-            <summary class="cursor-pointer font-medium">
-                Log in with a password instead
-            </summary>
+        <PasswordFields
+            v-if="passwordLogin"
+            summary="Log in with a password instead"
+        >
             <Form
                 v-bind="store.form()"
                 :reset-on-success="['password']"
                 v-slot="{ errors, processing }"
-                class="mt-4 grid gap-4"
             >
-                <div class="grid gap-2">
-                    <Label for="password-email">Email address</Label>
-                    <Input
-                        id="password-email"
+                <label class="field">
+                    <span class="field-label">Email address</span>
+                    <input
+                        class="input"
                         type="email"
                         name="email"
                         autocomplete="email"
+                        autocapitalize="none"
                         required
                     />
-                    <InputError :message="errors.email" />
-                </div>
-                <div class="grid gap-2">
-                    <div class="flex items-center justify-between">
-                        <Label for="password">Password</Label>
-                        <TextLink
-                            v-if="canResetPassword"
-                            :href="request()"
-                            class="text-sm"
-                        >
-                            Forgot your password?
-                        </TextLink>
-                    </div>
-                    <PasswordInput
-                        id="password"
+                </label>
+                <p v-if="errors.email" class="err">{{ errors.email }}</p>
+                <label class="field">
+                    <span class="field-label">Password</span>
+                    <input
+                        class="input"
+                        type="password"
                         name="password"
                         autocomplete="current-password"
                         required
                     />
-                    <InputError :message="errors.password" />
-                </div>
+                </label>
+                <p v-if="errors.password" class="err">{{ errors.password }}</p>
                 <input type="hidden" name="remember" value="1" />
-                <Button
+                <button
                     type="submit"
+                    class="btn primary big wide"
+                    style="margin-top: 14px"
                     :disabled="processing"
                     data-test="login-button"
                 >
-                    <Spinner v-if="processing" />
                     Log in
-                </Button>
+                </button>
+                <p v-if="canResetPassword" class="fine center">
+                    <Link :href="request()" class="linkbtn"
+                        >Forgot your password?</Link
+                    >
+                </p>
             </Form>
-        </details>
+        </PasswordFields>
 
-        <p class="text-center text-sm text-muted-foreground">
+        <p class="fine center">
             New here?
-            <TextLink :href="register()">Create an account</TextLink>
+            <Link :href="register()" class="linkbtn">Create an account</Link>
         </p>
-    </div>
+        <p class="fine center">
+            By continuing, you agree to our
+            <Link href="/legal/terms" class="linkbtn">Terms</Link> and
+            <Link href="/legal/privacy" class="linkbtn">Privacy Policy</Link>.
+        </p>
+    </RzScreen>
 </template>

@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { computed, nextTick, ref } from 'vue';
-import InputError from '@/components/InputError.vue';
 import HouseholdFields from '@/components/household/HouseholdFields.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/onboarding';
 import type { CountryOption, HouseholdForm } from '@/types/household';
 
 /**
- * Onboarding in the prototype's order (spec §2). Everything is saved at the end.
+ * Onboarding in the prototype's order and look (spec §2). Everything is saved at the end.
  */
 const props = defineProps<{
     name: string | null;
@@ -134,58 +129,59 @@ function next() {
 <template>
     <Head title="Set up your household" />
 
-    <div
-        class="mx-auto flex min-h-svh max-w-md flex-col px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-32"
-    >
-        <div class="flex items-center gap-3 py-2">
-            <button
-                type="button"
-                class="size-11 rounded-full text-xl disabled:invisible"
-                aria-label="Back"
-                :disabled="index === 0"
-                @click="go(index - 1)"
-            >
-                ‹
-            </button>
-            <div
-                class="h-1.5 flex-1 overflow-hidden rounded-full bg-muted"
-                role="progressbar"
-                aria-label="Setup progress"
-                :aria-valuemin="1"
-                :aria-valuemax="steps.length"
-                :aria-valuenow="index + 1"
-            >
-                <i
-                    class="block h-full bg-primary transition-all"
-                    :style="{ width: `${((index + 1) / steps.length) * 100}%` }"
-                />
+    <form class="rz min-h-svh" @submit.prevent="next">
+        <div class="screen">
+            <div class="s-head">
+                <button
+                    type="button"
+                    class="icon-btn"
+                    aria-label="Back"
+                    :style="index === 0 ? 'visibility: hidden' : undefined"
+                    @click="go(index - 1)"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15 5l-7 7 7 7" />
+                    </svg>
+                </button>
+                <div
+                    class="progress-onb"
+                    role="progressbar"
+                    aria-label="Setup progress"
+                    :aria-valuemin="1"
+                    :aria-valuemax="steps.length"
+                    :aria-valuenow="index + 1"
+                >
+                    <i
+                        :style="{
+                            width: `${((index + 1) / steps.length) * 100}%`,
+                        }"
+                    />
+                </div>
+                <span class="small muted"
+                    >{{ index + 1 }} of {{ steps.length }}</span
+                >
             </div>
-            <span class="text-sm text-muted-foreground"
-                >{{ index + 1 }} of {{ steps.length }}</span
-            >
-        </div>
 
-        <h1
-            ref="heading"
-            tabindex="-1"
-            class="mt-6 text-2xl font-bold outline-none"
-        >
-            {{ COPY[step].title }}
-        </h1>
-        <p class="mt-2 mb-6 text-muted-foreground">{{ COPY[step].sub }}</p>
+            <h1 ref="heading" tabindex="-1" class="s-title">
+                {{ COPY[step].title }}
+            </h1>
+            <p class="s-sub">{{ COPY[step].sub }}</p>
 
-        <form class="contents" @submit.prevent="next">
-            <div v-if="step === 'name'" class="grid gap-2">
-                <Label for="onb-name">Your name</Label>
-                <Input
-                    id="onb-name"
-                    v-model="form.name"
-                    autocomplete="given-name"
-                    placeholder="e.g. Priya"
-                    maxlength="255"
-                />
-                <InputError :message="form.errors.name" />
-            </div>
+            <template v-if="step === 'name'">
+                <label class="field">
+                    <span class="field-label">Your name</span>
+                    <input
+                        v-model="form.name"
+                        class="input"
+                        autocomplete="given-name"
+                        placeholder="e.g. Priya"
+                        maxlength="255"
+                    />
+                </label>
+                <p v-if="form.errors.name" class="err">
+                    {{ form.errors.name }}
+                </p>
+            </template>
             <HouseholdFields
                 v-else
                 v-model="household"
@@ -193,23 +189,19 @@ function next() {
                 :countries="countries"
                 :errors="form.errors"
             />
+        </div>
 
-            <div
-                class="fixed inset-x-0 bottom-0 border-t bg-background px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
-            >
-                <div class="mx-auto max-w-md">
-                    <Button
-                        type="submit"
-                        size="lg"
-                        class="w-full"
-                        :disabled="form.processing"
-                        data-test="onboarding-next"
-                    >
-                        <Spinner v-if="form.processing" />
-                        {{ last ? 'Continue to free trial' : 'Continue' }}
-                    </Button>
-                </div>
+        <div class="cta-bar">
+            <div class="cta-bar-inner">
+                <button
+                    type="submit"
+                    class="btn primary big wide"
+                    :disabled="form.processing"
+                    data-test="onboarding-next"
+                >
+                    {{ last ? 'Continue to free trial' : 'Continue' }}
+                </button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </template>

@@ -2,84 +2,76 @@
 import { Form, Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import DeleteUser from '@/components/DeleteUser.vue';
-import Heading from '@/components/Heading.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { edit } from '@/routes/profile';
-
-defineOptions({
-    layout: {
-        breadcrumbs: [
-            {
-                title: 'Profile settings',
-                href: edit(),
-            },
-        ],
-    },
-});
+import AccountScreen from '@/components/rz/AccountScreen.vue';
 
 defineProps<{
     country?: string | null;
 }>();
 
-const page = usePage();
-const user = computed(() => page.props.auth.user);
+const user = computed(() => usePage().props.auth.user);
 </script>
 
 <template>
-    <Head title="Profile settings" />
+    <Head title="Your details" />
 
-    <h1 class="sr-only">Profile settings</h1>
-
-    <div class="flex flex-col space-y-6">
-        <Heading
-            variant="small"
-            title="Account"
-            description="Your name appears on your plan and on messages to your cook."
-        />
-
+    <AccountScreen title="Your details">
         <Form
             v-bind="ProfileController.update.form()"
-            class="space-y-6"
-            v-slot="{ errors, processing }"
+            :options="{ preserveScroll: true }"
+            v-slot="{ errors, processing, recentlySuccessful }"
         >
-            <div class="grid gap-2">
-                <Label for="name">Name</Label>
-                <Input
-                    id="name"
-                    class="mt-1 block w-full"
+            <label class="field" style="margin-top: 8px">
+                <span class="field-label">Your name</span>
+                <input
+                    class="input"
                     name="name"
-                    :default-value="user.name"
+                    :value="user.name"
+                    autocomplete="given-name"
                     required
-                    autocomplete="name"
-                    placeholder="Full name"
+                    maxlength="255"
                 />
-                <InputError class="mt-2" :message="errors.name" />
-            </div>
+            </label>
+            <p class="fine" style="margin-top: 6px">
+                Your name appears on your plan and on messages to your cook.
+            </p>
+            <p v-if="errors.name" class="err">{{ errors.name }}</p>
 
-            <dl class="grid gap-4 text-sm">
-                <div class="grid gap-1">
-                    <dt class="font-medium">Email address</dt>
-                    <dd class="text-muted-foreground">{{ user.email }}</dd>
-                </div>
-                <div v-if="country" class="grid gap-1">
-                    <dt class="font-medium">Country</dt>
-                    <dd class="text-muted-foreground">
-                        {{ country }}. You can change it in Household settings.
-                    </dd>
-                </div>
-            </dl>
+            <section class="list">
+                <h3>Signed in as</h3>
+                <ul>
+                    <li>
+                        <div class="lrow">
+                            <span
+                                >{{ user.email
+                                }}<small
+                                    >Log in with Google or a link sent to this
+                                    address.</small
+                                ></span
+                            >
+                        </div>
+                    </li>
+                    <li v-if="country">
+                        <div class="lrow">
+                            <span
+                                >{{ country
+                                }}<small
+                                    >Change your country in Household.</small
+                                ></span
+                            >
+                        </div>
+                    </li>
+                </ul>
+            </section>
 
-            <div class="flex items-center gap-4">
-                <Button :disabled="processing" data-test="update-profile-button"
-                    >Save</Button
-                >
-            </div>
+            <button
+                type="submit"
+                class="btn primary big wide"
+                style="margin-top: 22px"
+                :disabled="processing"
+                data-test="update-profile-button"
+            >
+                {{ recentlySuccessful ? 'Saved' : 'Save' }}
+            </button>
         </Form>
-    </div>
-
-    <DeleteUser />
+    </AccountScreen>
 </template>
