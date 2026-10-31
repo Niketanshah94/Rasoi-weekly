@@ -49,7 +49,7 @@ One Laravel application serves everything.
 
 Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with TypeScript, Tailwind 4, Filament 5, Pest 4, Sanctum 4, Horizon 5, PostgreSQL 16, Redis 7. Pest 5 needs PHP 8.4; move up together when the hosting and CI images are on 8.4.
 
-- The customer app came from the official Laravel Vue starter kit with only registration and login kept. Its password sign-in (Fortify) is temporary; M3 replaces it with Google and email links.
+- The customer app came from the official Laravel Vue starter kit with only registration and login kept. Since M3 customers sign in with Google or an email link; the starter kit's password sign-in stays behind `PASSWORD_LOGIN` (off by default) only until Google and an email provider are set up on the live server.
 - The admin panel and Horizon are served only on `ADMIN_DOMAIN` (locally `admin.localhost`), behind the `staff` guard and `staff` table. Only staff with the `owner` role can open Horizon.
 - Fonts match the prototype (Figtree, Bricolage Grotesque, Noto Sans Devanagari) and are downloaded at build time by the Vite fonts plugin.
 - `CLAUDE.md`, `README.md`, `data/`, `docs/` and `prototype/` are excluded from the front-end formatter: keep them exactly as delivered.
@@ -72,6 +72,15 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - The healthy-day check (spec §6) is plain PHP in `app/Planning` (`Nutrition`, `HealthyDay`, `HealthCheck`) so the plan engine can reuse it. Fat and carb shares are rounded to whole percentages before comparing, as the prototype does.
 - New dishes and ingredients get a `key` from their English name and go last in order (`HasKeyFromName`). An ingredient's unit is locked while recipes use it. `Dish::dietOf()` and `allergensOf()` power the admin's live preview.
 - The plan editor offers live dishes for the meal from the plan's countries, or from India for the Indian plan abroad (`PlanTemplate::dishPool()`).
+
+## Sign-in (set in M3)
+
+- Pages: `/register` (country, Google, "Email me an activation link") and `/login` (Google, "Email me a login link") are Fortify's views; the link and Google routes are in `routes/auth.php`. Logging in with an unknown email redirects to `/register?email=…`; signing up with a known email sends a login link instead.
+- Login links (`LoginLink`, `login_links` table) are signed URLs valid for 15 minutes and claimed once with an atomic update. Opening one shows a confirm button that posts back to the same signed URL, so email scanners that prefetch links can't use them up. Links are rate limited (`login-link` limiter) and sent as a queued `LoginLinkMail`.
+- `App\Auth\CustomerSignIn` finds or creates accounts for both methods, marks the email verified, and links a Google ID to an existing account with the same email. New accounts have no password and an empty name until onboarding.
+- Google on the web uses Socialite and only shows once `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are set. The mobile apps call `POST /api/auth/google` with the native sign-in's ID token; `GoogleIdTokenVerifier` checks it against Google's published keys (cached an hour), the issuer, the audience (web, Android or iOS client ID), expiry and a verified email. It returns a Sanctum token and starts a web session; a new account without a country gets a 422 with `needs_country`.
+- `PASSWORD_LOGIN=true` turns the starter kit's password sign-up, log-in, reset and Security settings back on; `RequirePasswordLogin` returns 404 for those routes when it is off. Tests run with it on, and switch it off where they check the product's sign-in.
+- The account page edits the name only; the email is shown, not edited. Deleting an account needs no password (customers have none) and removes its API tokens.
 
 ## Commands
 
