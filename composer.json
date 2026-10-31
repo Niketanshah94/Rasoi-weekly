@@ -8,11 +8,13 @@
     "require": {
         "php": "^8.3",
         "filament/filament": "^5.11",
+        "firebase/php-jwt": "^7.2",
         "inertiajs/inertia-laravel": "^3.0",
         "laravel/fortify": "^1.37.2",
         "laravel/framework": "^13.17",
         "laravel/horizon": "^5.50",
         "laravel/sanctum": "^4.0",
+        "laravel/socialite": "^5.31",
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.14",
         "spatie/laravel-activitylog": "^4.12"
