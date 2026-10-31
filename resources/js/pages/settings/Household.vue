@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import { Head, useForm } from '@inertiajs/vue3';
 import { computed, watch } from 'vue';
-import Heading from '@/components/Heading.vue';
 import HouseholdFields from '@/components/household/HouseholdFields.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { edit, update } from '@/routes/household';
+import AccountScreen from '@/components/rz/AccountScreen.vue';
+import { update } from '@/routes/household';
 import type { CountryOption, HouseholdForm } from '@/types/household';
-
-defineOptions({
-    layout: {
-        breadcrumbs: [{ title: 'Household settings', href: edit() }],
-    },
-});
 
 const props = defineProps<{
     household: HouseholdForm;
@@ -28,6 +19,7 @@ const household = computed<HouseholdForm>({
 const country = computed(() =>
     props.countries.find((c) => c.code === form.country),
 );
+const countryChanged = computed(() => form.country !== props.household.country);
 
 // A new country has its own plans and leave-outs: keep only what still applies.
 watch(
@@ -46,78 +38,90 @@ watch(
     },
 );
 
-const SECTIONS = [
-    { key: 'cooks', title: 'Who does the cooking?' },
-    { key: 'people', title: 'Who’s eating?' },
-    { key: 'avoid', title: 'Anything to leave out?' },
-    { key: 'plan', title: 'Plan style' },
-] as const;
-
 function save() {
     form.patch(update.url(), { preserveScroll: true });
 }
 </script>
 
 <template>
-    <Head title="Household settings" />
+    <Head title="Household" />
 
-    <h1 class="sr-only">Household settings</h1>
-
-    <form class="flex flex-col space-y-8" @submit.prevent="save">
-        <Heading
-            variant="small"
-            title="Household"
-            description="Who you plan for. Changes apply to this week’s plan and shopping list."
-        />
-
-        <div class="grid gap-2">
-            <Label for="hh-country">Country</Label>
-            <select
-                id="hh-country"
-                v-model="form.country"
-                class="h-11 rounded-md border border-input bg-background px-3 text-base"
-            >
-                <option v-for="c in countries" :key="c.code" :value="c.code">
-                    {{ c.name }}
-                </option>
-            </select>
-            <p class="text-sm text-muted-foreground">
-                It sets dishes, plans, prices and units.
+    <form @submit.prevent="save">
+        <AccountScreen title="Household" with-cta>
+            <label class="field" style="margin-top: 8px">
+                <span class="field-label">Country</span>
+                <select v-model="form.country" class="input">
+                    <option
+                        v-for="c in countries"
+                        :key="c.code"
+                        :value="c.code"
+                    >
+                        {{ c.name }} ({{ c.dialCode }})
+                    </option>
+                </select>
+            </label>
+            <p class="fine" style="margin-top: 6px">
+                Plans, dishes, prices and phone codes follow your country.{{
+                    countryChanged
+                        ? ' Your plan style changes to one for this country.'
+                        : ''
+                }}
             </p>
-            <InputError :message="form.errors.country" />
-        </div>
+            <p v-if="form.errors.country" class="err">
+                {{ form.errors.country }}
+            </p>
 
-        <section
-            v-for="section in SECTIONS"
-            :key="section.key"
-            class="grid gap-3"
-        >
-            <h2 class="font-semibold">{{ section.title }}</h2>
+            <p class="section-label">Who does the cooking?</p>
             <HouseholdFields
                 v-model="household"
-                :section="section.key"
+                section="cooks"
                 :countries="countries"
                 :errors="form.errors"
             />
-        </section>
-
-        <section v-if="form.who_cooks !== 'self'" class="grid gap-3">
-            <h2 class="font-semibold">About your cook</h2>
+            <p class="section-label">Who’s eating?</p>
             <HouseholdFields
                 v-model="household"
-                section="cook"
+                section="people"
                 :countries="countries"
                 :errors="form.errors"
             />
-        </section>
+            <p class="section-label">Leave out</p>
+            <HouseholdFields
+                v-model="household"
+                section="avoid"
+                :countries="countries"
+                :errors="form.errors"
+            />
+            <p class="section-label">Plan style</p>
+            <HouseholdFields
+                v-model="household"
+                section="plan"
+                :countries="countries"
+                :errors="form.errors"
+            />
+            <template v-if="form.who_cooks !== 'self'">
+                <p class="section-label">Your cook</p>
+                <HouseholdFields
+                    v-model="household"
+                    section="cook"
+                    :countries="countries"
+                    :errors="form.errors"
+                />
+            </template>
+            <p v-if="form.recentlySuccessful" class="note" role="status">
+                Saved. This week’s plan and shopping list are updated.
+            </p>
 
-        <div>
-            <Button
-                type="submit"
-                :disabled="form.processing"
-                data-test="save-household"
-                >Save</Button
-            >
-        </div>
+            <template #cta>
+                <button
+                    type="submit"
+                    class="btn primary big wide"
+                    :disabled="form.processing"
+                    data-test="save-household"
+                >
+                    Save changes
+                </button>
+            </template>
+        </AccountScreen>
     </form>
 </template>

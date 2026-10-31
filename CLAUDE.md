@@ -108,6 +108,7 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - WhatsApp texts are built server-side: `CookMenuText` (the day's menu, English or Hindi) and `ShoppingListText` (the bazaar list; Hindi for India and the Indian plan). Sharing opens `wa.me` links.
 - Installable app: `public/manifest.webmanifest`, icons in `public/icons/`, and `public/sw.js`, which keeps `/plan`, `/groceries`, `/cook` and `/dishes` offline (network first, saved copy when offline) and caches hashed build files. `resources/js/lib/offline.ts` registers it in production, warms the pages after sign-in and deletes them when a guest page loads, so nothing stays on the device after logging out.
 - Free-tier gating arrives with billing in M7: `shell.hasAccess` is always true for now.
+- Every customer-facing page uses the Rasoi design, not the starter kit's: sign-in pages (`auth/*`, built on `components/rz/RzScreen.vue`), onboarding, and the Household, details and Appearance screens (`components/rz/AccountScreen.vue`). Only the password Security page and the admin panel keep other styles.
 
 ## Commands
 

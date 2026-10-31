@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import RzScreen from '@/components/rz/RzScreen.vue';
 import { login, register } from '@/routes';
 import { login as sendLoginLink, signup } from '@/routes/login-link';
-
-defineOptions({
-    layout: {
-        title: 'Check your inbox',
-        description: '',
-    },
-});
 
 const props = defineProps<{
     email: string;
@@ -20,21 +12,23 @@ const props = defineProps<{
     minutes: number;
 }>();
 
-const signingUp = props.intent === 'signup';
+const signingUp = computed(() => props.intent === 'signup');
 </script>
 
 <template>
     <Head title="Check your inbox" />
 
-    <div class="flex flex-col gap-6 text-center">
-        <p class="text-muted-foreground">
+    <RzScreen
+        title="Check your inbox"
+        :back="signingUp ? register.url() : login.url()"
+    >
+        <p class="s-sub">
             We sent {{ signingUp ? 'an activation link' : 'a login link' }} to
-            <b class="text-foreground">{{ email }}</b
+            <b>{{ email }}</b
             >. Open it on this device to
             {{ signingUp ? 'activate your account' : 'log in' }}. The link works
             for {{ minutes }} minutes.
         </p>
-
         <Form
             v-bind="signingUp ? signup.form() : sendLoginLink.form()"
             v-slot="{ processing, wasSuccessful }"
@@ -46,22 +40,21 @@ const signingUp = props.intent === 'signup';
                 name="country"
                 :value="country"
             />
-            <Button
+            <button
                 type="submit"
-                variant="outline"
+                class="btn big wide"
+                style="margin-top: 22px"
                 :disabled="processing"
                 data-test="resend-link"
             >
-                <Spinner v-if="processing" />
                 {{ wasSuccessful ? 'Sent again' : 'Send it again' }}
-            </Button>
+            </button>
         </Form>
-
-        <p class="text-sm text-muted-foreground">
+        <p class="fine center">
             Wrong address?
-            <TextLink :href="signingUp ? register() : login()">
-                Use a different email
-            </TextLink>
+            <Link :href="signingUp ? register() : login()" class="linkbtn"
+                >Use a different email</Link
+            >
         </p>
-    </div>
+    </RzScreen>
 </template>

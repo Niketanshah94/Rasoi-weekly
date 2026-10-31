@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-import DeleteUser from '@/components/DeleteUser.vue';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
+import Sheet from '@/components/rz/Sheet.vue';
 import { logout } from '@/routes';
 import type { HouseholdSummary, Shell } from '@/types/app';
 
@@ -21,6 +23,7 @@ const WHO_COOKS = {
     cook: 'A cook comes to help',
     both: 'Both',
 } as const;
+const deleting = ref(false);
 </script>
 
 <template>
@@ -140,10 +143,53 @@ const WHO_COOKS = {
                             ><span>Log out</span></Link
                         >
                     </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="lrow danger"
+                            data-test="delete-user-button"
+                            @click="deleting = true"
+                        >
+                            <span>Delete account</span>
+                        </button>
+                    </li>
                 </ul>
             </section>
-
-            <div class="mt-6"><DeleteUser /></div>
         </main>
+
+        <Sheet v-model="deleting" title="Delete account">
+            <h2 class="sheet-title" style="font-size: 24px">
+                Delete your account?
+            </h2>
+            <ul class="perks plain">
+                <li>Your household, plans and shopping lists are deleted.</li>
+                <li>
+                    Any subscription is cancelled and the AutoPay mandate
+                    revoked.
+                </li>
+                <li>
+                    We keep payment records only as long as tax law requires.
+                </li>
+            </ul>
+            <p class="fine">This can’t be undone.</p>
+            <Form
+                v-bind="ProfileController.destroy.form()"
+                v-slot="{ processing }"
+            >
+                <div class="sheet-actions">
+                    <button type="button" class="btn" @click="deleting = false">
+                        Keep account
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn danger"
+                        :disabled="processing"
+                        data-test="confirm-delete-user-button"
+                    >
+                        Delete account
+                    </button>
+                </div>
+            </Form>
+        </Sheet>
     </div>
 </template>

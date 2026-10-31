@@ -1,7 +1,6 @@
 import { createInertiaApp } from '@inertiajs/vue3';
 import { initializeTheme } from '@/composables/useAppearance';
 import AppLayout from '@/layouts/AppLayout.vue';
-import AuthLayout from '@/layouts/AuthLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
 import { initializeOffline } from '@/lib/offline';
@@ -16,9 +15,14 @@ void createInertiaApp({
             case name.startsWith('onboarding/'):
             case name.startsWith('app/'):
             case name.startsWith('legal/'):
-                return null;
             case name.startsWith('auth/'):
-                return AuthLayout;
+                return null;
+
+            // Customer settings use the app's own screens; Security stays in the settings frame.
+            case name === 'settings/Household':
+            case name === 'settings/Profile':
+            case name === 'settings/Appearance':
+                return null;
             case name.startsWith('settings/'):
                 return [AppLayout, SettingsLayout];
             default:
