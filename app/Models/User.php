@@ -5,8 +5,10 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -27,6 +29,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Country|null $country
+ * @property-read Collection<int, Household> $households
  */
 #[Fillable(['name', 'email', 'password', 'google_id', 'country_id'])]
 #[Hidden(['password', 'google_id', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
@@ -56,5 +59,22 @@ class User extends Authenticatable
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * @return BelongsToMany<Household, $this>
+     */
+    public function households(): BelongsToMany
+    {
+        return $this->belongsToMany(Household::class)->withPivot('role')->withTimestamps();
+    }
+
+    /**
+     * The household this person plans for. Everyone has at most one for now.
+     */
+    public function household(): ?Household
+    {
+        // Queried each time: onboarding creates it partway through a request.
+        return $this->households()->first();
     }
 }

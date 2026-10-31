@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -50,9 +51,16 @@ class ProfileController extends Controller
 
         Auth::guard('web')->logout();
 
-        // Mobile app tokens go with the account. Household, plans and subscriptions follow in later milestones.
-        $user->tokens()->delete();
-        $user->delete();
+        // The household goes too when nobody else is in it (spec §1). Subscriptions follow in M7.
+        DB::transaction(function () use ($user) {
+            foreach ($user->households as $household) {
+                if ($household->members()->count() === 1) {
+                    $household->delete();
+                }
+            }
+            $user->tokens()->delete();
+            $user->delete();
+        });
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
