@@ -8,13 +8,11 @@ use App\Filament\Resources\PlanTemplates\Pages\EditPlanTemplate;
 use App\Models\Dish;
 use App\Models\PlanTemplate;
 use App\Models\Staff;
-use Database\Seeders\ContentSeeder;
 use Filament\Facades\Filament;
 use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function () {
-    $this->seed(ContentSeeder::class);
     Filament::setCurrentPanel('admin');
 });
 

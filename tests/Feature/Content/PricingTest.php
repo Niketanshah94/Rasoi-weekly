@@ -5,9 +5,6 @@ use App\Enums\PriceMarket;
 use App\Models\ExchangeRate;
 use App\Models\Price;
 use App\Models\PricingSettings;
-use Database\Seeders\ContentSeeder;
-
-beforeEach(fn () => $this->seed(ContentSeeder::class));
 
 test('prices are stored in minor units with their currency', function () {
     $price = fn (PriceMarket $market, BillingInterval $interval) => Price::for($market, $interval)->only('currency', 'amount_minor');

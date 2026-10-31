@@ -8,14 +8,12 @@ use App\Filament\Resources\Dishes\Schemas\DishForm;
 use App\Models\Dish;
 use App\Models\Staff;
 use App\Planning\Nutrition;
-use Database\Seeders\ContentSeeder;
 use Filament\Actions\DeleteAction;
 use Filament\Facades\Filament;
 use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function () {
-    $this->seed(ContentSeeder::class);
     Filament::setCurrentPanel('admin');
 });
 

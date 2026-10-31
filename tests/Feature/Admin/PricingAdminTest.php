@@ -6,13 +6,11 @@ use App\Filament\Pages\Pricing;
 use App\Models\ExchangeRate;
 use App\Models\Price;
 use App\Models\Staff;
-use Database\Seeders\ContentSeeder;
 use Filament\Facades\Filament;
 use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function () {
-    $this->seed(ContentSeeder::class);
     Filament::setCurrentPanel('admin');
 });
 

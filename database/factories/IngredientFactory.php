@@ -36,11 +36,6 @@ class IngredientFactory extends Factory
         return $this->state(fn () => ['aisle' => Aisle::MeatAndFish]);
     }
 
-    public function eggs(): static
-    {
-        return $this->state(fn () => ['key' => 'eggs', 'aisle' => Aisle::DairyAndEggs]);
-    }
-
     /**
      * @param  list<Allergen>  $allergens
      */

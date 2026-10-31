@@ -6,12 +6,10 @@ use App\Models\Dish;
 use App\Models\Ingredient;
 use App\Models\PlanTemplate;
 use App\Models\Staff;
-use Database\Seeders\ContentSeeder;
 use Filament\Facades\Filament;
 use Livewire\Livewire;
 
 beforeEach(function () {
-    $this->seed(ContentSeeder::class);
     Filament::setCurrentPanel('admin');
 });
 

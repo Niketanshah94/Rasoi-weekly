@@ -4,12 +4,10 @@ use App\Enums\LoginIntent;
 use App\Mail\LoginLinkMail;
 use App\Models\LoginLink;
 use App\Models\User;
-use Database\Seeders\CountrySeeder;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function () {
-    $this->seed(CountrySeeder::class);
     Mail::fake();
 });
 

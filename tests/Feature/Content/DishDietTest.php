@@ -4,7 +4,6 @@ use App\Enums\Allergen;
 use App\Enums\Diet;
 use App\Models\Dish;
 use App\Models\Ingredient;
-use Database\Seeders\ContentSeeder;
 
 /**
  * @param  list<Ingredient>  $ingredients
@@ -24,12 +23,12 @@ test('a dish with no meat, fish or eggs is veg', function () {
 });
 
 test('eggs make a dish egg', function () {
-    expect(dishWith([Ingredient::factory()->create(), Ingredient::factory()->eggs()->create()])->diet())
+    expect(dishWith([Ingredient::factory()->create(), Ingredient::where('key', 'eggs')->firstOrFail()])->diet())
         ->toBe(Diet::Egg);
 });
 
 test('anything from the meat and fish aisle makes a dish non-veg, even with eggs', function () {
-    expect(dishWith([Ingredient::factory()->eggs()->create(), Ingredient::factory()->meat()->create()])->diet())
+    expect(dishWith([Ingredient::where('key', 'eggs')->firstOrFail(), Ingredient::factory()->meat()->create()])->diet())
         ->toBe(Diet::NonVeg);
 });
 
@@ -44,7 +43,6 @@ test('allergens are the union of the ingredients’ allergens, in recipe order, 
 });
 
 test('every delivered dish derives the diet and allergens recorded for reference', function () {
-    $this->seed(ContentSeeder::class);
     $dishes = Dish::with('ingredients')->get()->keyBy('key');
 
     $mismatches = [];
