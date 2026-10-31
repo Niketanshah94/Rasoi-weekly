@@ -1,0 +1,75 @@
+name: android
+
+# Builds the Android test app and publishes it as the "android-dev" pre-release,
+# so the APK can be downloaded straight onto a phone.
+
+on:
+  push:
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-dev
+  cancel-in-progress: true
+
+jobs:
+  debug-apk:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Java
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      - name: Install Capacitor
+        run: npm ci
+
+      - name: Sync web assets into the Android project
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: mobile/android
+        run: ./gradlew assembleDebug -PversionCode=${{ github.run_number }} --no-daemon
+
+      - name: Name the APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk rasoi-test-${{ github.run_number }}.apk
+
+      - name: Keep the APK with this run
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rasoi-test-${{ github.run_number }}
+          path: mobile/rasoi-test-${{ github.run_number }}.apk
+
+      - name: Publish as the android-dev pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete android-dev --cleanup-tag --yes || true
+          gh release create android-dev rasoi-test-${{ github.run_number }}.apk \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "Android test build ${{ github.run_number }}" \
+            --notes "Test build ${{ github.run_number }} from \`${GITHUB_REF_NAME}\` at ${GITHUB_SHA::7}. Open this page on your Android phone, download the APK and install it."

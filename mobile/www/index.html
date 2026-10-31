@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta name="color-scheme" content="light dark" />
+        <title>Rasoi</title>
+        <style>
+            :root {
+                --ground: #f1f4f0;
+                --surface: #ffffff;
+                --ink: #1b2620;
+                --muted: #55645a;
+                --line: #d3dbd3;
+                --leaf: #2e6a3e;
+                --leaf-ink: #ffffff;
+                --chili: #c0432f;
+                --body:
+                    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --ground: #111713;
+                    --surface: #1a221d;
+                    --ink: #e8eee9;
+                    --muted: #a3b3a8;
+                    --line: #2f3b34;
+                    --leaf: #7cc48f;
+                    --leaf-ink: #0e1a12;
+                    --chili: #ee7a64;
+                }
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: var(--ground);
+                color: var(--ink);
+                font: 16px/1.45 var(--body);
+                padding: calc(env(safe-area-inset-top, 0px) + 48px) 20px
+                    calc(env(safe-area-inset-bottom, 0px) + 24px);
+            }
+            main {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+            h1 {
+                font-size: 32px;
+                line-height: 1.1;
+                margin: 0 0 8px;
+                letter-spacing: -0.01em;
+            }
+            p {
+                margin: 0 0 16px;
+                color: var(--muted);
+            }
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 20px;
+                margin-top: 24px;
+            }
+            label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+            input {
+                width: 100%;
+                min-height: 48px;
+                padding: 12px 14px;
+                border-radius: 12px;
+                border: 1px solid var(--line);
+                background: var(--ground);
+                color: var(--ink);
+                font: inherit;
+            }
+            .hint {
+                font-size: 14px;
+                margin: 8px 0 0;
+            }
+            button {
+                width: 100%;
+                min-height: 48px;
+                margin-top: 16px;
+                border: 0;
+                border-radius: 12px;
+                background: var(--leaf);
+                color: var(--leaf-ink);
+                font: inherit;
+                font-weight: 600;
+            }
+            button:disabled {
+                opacity: 0.6;
+            }
+            input:focus-visible,
+            button:focus-visible {
+                outline: 3px solid var(--leaf);
+                outline-offset: 2px;
+            }
+            .error {
+                color: var(--chili);
+                font-weight: 600;
+                margin: 12px 0 0;
+            }
+            .error:empty {
+                display: none;
+            }
+            .tag {
+                display: inline-block;
+                font-size: 13px;
+                font-weight: 600;
+                padding: 2px 10px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                color: var(--muted);
+                margin-bottom: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <span class="tag">Test build</span>
+            <h1>Rasoi</h1>
+            <p>Connect to the Rasoi server running on your computer.</p>
+
+            <form class="card" id="connect" novalidate>
+                <label for="server">Server address</label>
+                <input
+                    id="server"
+                    name="server"
+                    type="url"
+                    inputmode="url"
+                    autocomplete="url"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    placeholder="https://your-tunnel.trycloudflare.com"
+                    required
+                />
+                <p class="hint">
+                    Use your tunnel link, or http://your-computer-ip:8000 on the
+                    same Wi‑Fi.
+                </p>
+                <p class="error" id="error" role="alert" aria-live="polite"></p>
+                <button type="submit" id="open">Open Rasoi</button>
+            </form>
+        </main>
+        <script>
+            (function () {
+                var KEY = 'rasoi.server';
+                var form = document.getElementById('connect');
+                var input = document.getElementById('server');
+                var error = document.getElementById('error');
+                var button = document.getElementById('open');
+
+                function read() {
+                    try {
+                        return localStorage.getItem(KEY) || '';
+                    } catch (e) {
+                        return '';
+                    }
+                }
+
+                function write(value) {
+                    try {
+                        localStorage.setItem(KEY, value);
+                    } catch (e) {}
+                }
+
+                function normalise(value) {
+                    value = value.trim().replace(/\/+$/, '');
+                    if (value && !/^https?:\/\//i.test(value)) {
+                        value = 'https://' + value;
+                    }
+                    try {
+                        return new URL(value).origin;
+                    } catch (e) {
+                        return '';
+                    }
+                }
+
+                input.value = read();
+
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    error.textContent = '';
+
+                    var origin = normalise(input.value);
+                    if (!origin) {
+                        error.textContent =
+                            'Enter a server address, like https://example.trycloudflare.com.';
+                        input.focus();
+                        return;
+                    }
+
+                    button.disabled = true;
+                    button.textContent = 'Connecting…';
+
+                    // Laravel's health route answers on /up. no-cors still rejects when the host can't be reached.
+                    var timeout = new Promise(function (_, reject) {
+                        setTimeout(reject, 10000);
+                    });
+                    Promise.race([
+                        fetch(origin + '/up', {
+                            mode: 'no-cors',
+                            cache: 'no-store',
+                        }),
+                        timeout,
+                    ])
+                        .then(function () {
+                            write(origin);
+                            window.location.href = origin + '/';
+                        })
+                        .catch(function () {
+                            error.textContent =
+                                'Couldn’t reach ' +
+                                origin +
+                                '. Check the server and the tunnel are running.';
+                            button.disabled = false;
+                            button.textContent = 'Open Rasoi';
+                        });
+                });
+            })();
+        </script>
+    </body>
+</html>

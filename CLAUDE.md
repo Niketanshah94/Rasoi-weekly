@@ -70,7 +70,9 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 | Fix PHP style | `composer lint` |
 | Fix front-end format and lint | `npm run check:fix` |
 | Production build | `npm run build` |
+| Serve to your network for the phone (build, then serve on 0.0.0.0:8000) | `composer share` |
+| Android test app and tunnel setup | see `mobile/README.md` |
 
 Local services: PostgreSQL with databases `rasoi` and `rasoi_test` (user and password `rasoi`), and Redis on the default port. Tests run against `rasoi_test`.
 
-Capacitor commands (sync, run on Android) are added in M3b.
+The Android shell in `mobile/` was brought forward from M3b at the owner’s request: GitHub Actions builds a debug APK on every change under `mobile/` and publishes it as the `android-dev` pre-release. Until a staging server exists the app opens on a connect screen that asks for the server address (a tunnel to a computer, or a local IP). Native Google sign-in and App Links remain in M3b.

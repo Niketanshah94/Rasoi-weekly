@@ -69,6 +69,8 @@ Work through these in order. Each milestone ends with passing tests and a pull r
 
 **Goal:** an Android app you can install on a phone and sign in with, built from the same Vue code as the web app.
 
+*Started early, after M0:* the Capacitor project, the connect screen, the debug signing key and the GitHub Actions APK build already exist (see `mobile/README.md`). What remains is below from native Google sign-in on.
+
 - Capacitor project in `/mobile` (Android only for now) loading the customer web app from a staging URL; for local work, live reload against the dev server on the same network.
 - Native Google sign-in plugin → `POST /api/auth/google`; email login links open the app (Android App Links).
 - Safe-area handling, status bar and splash screen, app icon, offline fallback screen.

@@ -1,0 +1,10 @@
+{
+    "appId": "com.noonlaunch.rasoi",
+    "appName": "Rasoi",
+    "webDir": "www",
+    "server": {
+        "androidScheme": "https",
+        "allowNavigation": ["*"],
+        "cleartext": true
+    }
+}
