@@ -31,7 +31,8 @@ class OnboardingController extends Controller
         return Inertia::render('onboarding/Onboarding', [
             'name' => $user?->name,
             'household' => HouseholdOptions::form(null, $country),
-            'countries' => HouseholdOptions::countries(),
+            // Partial reloads pass the answers so far, so plan previews reflect diet and leave-outs.
+            'countries' => fn () => HouseholdOptions::countries(HouseholdOptions::dinersFrom($request, $country)),
         ]);
     }
 

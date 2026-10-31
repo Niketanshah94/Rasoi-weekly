@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Planning\HouseholdPlanner;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // The catalogue is loaded once per request (or job) and shared.
+        $this->app->scoped(HouseholdPlanner::class);
     }
 
     /**

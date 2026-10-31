@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 import { computed, nextTick, ref } from 'vue';
 import InputError from '@/components/InputError.vue';
 import HouseholdFields from '@/components/household/HouseholdFields.vue';
@@ -88,6 +88,20 @@ const FIELD_STEP: Record<string, Step> = {
 
 async function go(to: number) {
     index.value = Math.max(0, Math.min(to, steps.value.length - 1));
+
+    // Plan previews show Monday after diet and leave-out substitution, so fetch them for these answers.
+    if (step.value === 'plan') {
+        router.reload({
+            only: ['countries'],
+            data: {
+                people: form.people,
+                nonveg_eaters: form.nonveg_eaters,
+                veg_eat_eggs: form.veg_eat_eggs ? 1 : 0,
+                leave_out: form.leave_out,
+            },
+        });
+    }
+
     await nextTick();
     heading.value?.focus();
 }
