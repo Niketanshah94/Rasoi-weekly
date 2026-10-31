@@ -71,7 +71,7 @@ test('finishing onboarding saves the household and the name', function () {
         ->and($household?->members->first()?->pivot?->getAttribute('role'))->toBe(HouseholdRole::Owner->value);
 
     $this->get(route('onboarding'))->assertRedirect(route('dashboard'));
-    $this->get(route('dashboard'))->assertOk();
+    $this->get(route('plan'))->assertOk();
 });
 
 test('cook details are dropped when the household cooks for itself', function () {

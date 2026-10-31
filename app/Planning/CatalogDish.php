@@ -17,11 +17,13 @@ final readonly class CatalogDish
      * @param  list<string>  $countries  Country codes.
      * @param  list<Allergen>  $allergens
      * @param  array<string, float>  $ingredients  Quantity per serving by ingredient key, in recipe order.
+     * @param  list<string>  $steps
      */
     public function __construct(
         public int $id,
         public string $key,
         public string $name,
+        public ?string $nameHi,
         public array $meals,
         public array $countries,
         public bool $published,
@@ -30,7 +32,19 @@ final readonly class CatalogDish
         public Mood $mood,
         public Nutrition $nutrition,
         public array $ingredients,
+        public string $cuisineCode = '',
+        public string $cuisineName = '',
+        public int $prepMinutes = 0,
+        public int $cookMinutes = 0,
+        public int $spice = 0,
+        public int $effort = 1,
+        public array $steps = [],
     ) {}
+
+    public function minutes(): int
+    {
+        return $this->prepMinutes + $this->cookMinutes;
+    }
 
     public function servesMeal(Meal $meal): bool
     {

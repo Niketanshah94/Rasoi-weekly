@@ -4,6 +4,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
+import { initializeOffline } from '@/lib/offline';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -13,6 +14,8 @@ void createInertiaApp({
         switch (true) {
             case name === 'Welcome':
             case name.startsWith('onboarding/'):
+            case name.startsWith('app/'):
+            case name.startsWith('legal/'):
                 return null;
             case name.startsWith('auth/'):
                 return AuthLayout;
@@ -41,3 +44,6 @@ initializeTheme();
 
 // This will listen for flash toast data from the server...
 initializeFlashToast();
+
+// Installable app: offline copies of this week's plan and lists.
+initializeOffline();

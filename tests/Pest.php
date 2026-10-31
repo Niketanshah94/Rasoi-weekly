@@ -2,6 +2,7 @@
 
 use App\Enums\DishStatus;
 use App\Enums\Meal;
+use App\Http\Middleware\HandleInertiaRequests;
 use App\Models\Country;
 use App\Models\Cuisine;
 use App\Models\Ingredient;
@@ -95,5 +96,21 @@ function newDishForm(array $overrides = []): array
         // The steps repeater holds each step under its field name while editing.
         'steps_en' => [['step' => 'Soften the methi in butter.'], ['step' => 'Simmer the paneer in the cream.']],
         ...$overrides,
+    ];
+}
+
+/**
+ * An Inertia partial reload, as the app makes when a sheet opens.
+ *
+ * @param  list<string>  $props
+ * @return array<string, string>
+ */
+function partialReload(string $component, array $props): array
+{
+    return [
+        'X-Inertia' => 'true',
+        'X-Inertia-Version' => (string) app(HandleInertiaRequests::class)->version(request()),
+        'X-Inertia-Partial-Component' => $component,
+        'X-Inertia-Partial-Data' => implode(',', $props),
     ];
 }

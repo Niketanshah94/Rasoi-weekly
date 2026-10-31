@@ -4,6 +4,7 @@ namespace App\Planning;
 
 use App\Enums\Meal;
 use App\Enums\Weekday;
+use App\Models\CookedMeal;
 use App\Models\Dish;
 use App\Models\Household;
 use App\Models\PlanOverride;
@@ -82,6 +83,42 @@ class HouseholdPlanner
         } else {
             PlanOverride::updateOrCreate($slot, ['dish_id' => $dish->id]);
         }
+
+        // A new dish hasn't been cooked yet.
+        CookedMeal::where([...$slot, 'week_start' => WeekClock::monday($household->country->code)->toDateString()])->delete();
+    }
+
+    /**
+     * Mark a meal cooked or not, this week.
+     */
+    public function setCooked(Household $household, Weekday $day, Meal $meal, bool $cooked): void
+    {
+        $slot = [
+            'household_id' => $household->id,
+            'plan_template_id' => $this->planFor($household)->id,
+            'diet_mode' => $household->dietMode(),
+            'week_start' => WeekClock::monday($household->country->code)->toDateString(),
+            'weekday' => $day,
+            'meal' => $meal,
+        ];
+
+        $cooked ? CookedMeal::firstOrCreate($slot) : CookedMeal::where($slot)->delete();
+    }
+
+    /**
+     * Meals cooked this week, keyed "day|meal".
+     *
+     * @return array<string, bool>
+     */
+    public function cooked(Household $household): array
+    {
+        return CookedMeal::where('household_id', $household->id)
+            ->where('plan_template_id', $this->planFor($household)->id)
+            ->where('diet_mode', $household->dietMode())
+            ->whereDate('week_start', WeekClock::monday($household->country->code)->toDateString())
+            ->get()
+            ->mapWithKeys(fn (CookedMeal $c) => [HouseholdWeek::overrideKey($c->weekday, $c->meal) => true])
+            ->all();
     }
 
     /**

@@ -99,6 +99,16 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - `tests/Feature/Planning/GoldenPlanTest.php` runs all 192 cases in `data/golden/plan_resolution.json`: resolved week, pairs, daily totals, checks, fixes and groceries. The fixtures round `raw_qty` on export, so the test compares it to two decimals; display strings match exactly. Treat any other difference as a bug.
 - Swaps live in `plan_overrides` per household, plan, diet mode, day and meal; choosing the resolved dish removes the swap, and a swap that is no longer allowed falls back to the resolved dish. Pantry ticks live in `shopping_ticks` per household, plan and week start.
 
+## Customer screens (set in M6)
+
+- Tabs are Inertia pages under `resources/js/pages/app/` (`/plan`, `/dishes`, `/groceries`, `/cook`, `/account`) inside `components/rz/AppShell.vue`; `/dashboard` redirects to `/plan`. The landing page (`LandingController`, `Welcome.vue`) and `legal/{terms,privacy,refund}` are public; the landing picks the visitor's country from the time zone.
+- The look is the prototype's own stylesheet, ported by script into `resources/css/rasoi.css` and scoped under `.rz`; dark tokens follow the app's `.dark` class. Markup keeps the prototype's class names. Put fixes in the "App adjustments" block at the end of that file.
+- `App\Http\Presenters\WeekPresenter` turns a `HouseholdWeek` into page props. The Plan tab gets all seven days at once so switching days is instant; the recipe and swap sheets load through Inertia optional props (`recipe`, `swapOptions`) on a partial reload.
+- Swaps (`plan.swap`), cooked marks (`plan.cooked`, table `cooked_meals`, cleared when the meal is swapped), plan style (`plan.style`) and pantry ticks (`groceries.tick`) are saved per household, plan, diet mode and week. "This week" comes from `WeekClock`, in the country's time zone.
+- WhatsApp texts are built server-side: `CookMenuText` (the day's menu, English or Hindi) and `ShoppingListText` (the bazaar list; Hindi for India and the Indian plan). Sharing opens `wa.me` links.
+- Installable app: `public/manifest.webmanifest`, icons in `public/icons/`, and `public/sw.js`, which keeps `/plan`, `/groceries`, `/cook` and `/dishes` offline (network first, saved copy when offline) and caches hashed build files. `resources/js/lib/offline.ts` registers it in production, warms the pages after sign-in and deletes them when a guest page loads, so nothing stays on the device after logging out.
+- Free-tier gating arrives with billing in M7: `shell.hasAccess` is always true for now.
+
 ## Commands
 
 | What | Command |
