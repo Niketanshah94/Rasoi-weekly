@@ -22,4 +22,21 @@ enum Aisle: string implements HasLabel
     {
         return $this->value;
     }
+
+    /**
+     * Section names for the Hindi bazaar list, as the prototype writes them.
+     */
+    public function hindiLabel(): string
+    {
+        return match ($this) {
+            self::VegetablesAndHerbs => 'सब्ज़ियाँ और हरी चीज़ें',
+            self::Fruit => 'फल',
+            self::DairyAndEggs => 'दूध, दही और अंडे',
+            self::GrainsAndFlours => 'अनाज और आटा',
+            self::DalsAndPulses => 'दालें',
+            self::MeatAndFish => 'मीट और मछली',
+            self::BreadAndReadyMade => 'ब्रेड और तैयार सामान',
+            self::Pantry => 'किराना',
+        };
+    }
 }

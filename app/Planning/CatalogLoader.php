@@ -23,7 +23,7 @@ class CatalogLoader
         $ingredients = Ingredient::orderBy('position')->get()->keyBy('id');
         $countryCodes = Country::pluck('code', 'id');
 
-        $dishes = Dish::with(['countries', 'dishIngredients'])->orderBy('position')->get()->map(function (Dish $dish) use ($ingredients) {
+        $dishes = Dish::with(['countries', 'dishIngredients', 'cuisine'])->orderBy('position')->get()->map(function (Dish $dish) use ($ingredients) {
             $lines = $dish->dishIngredients;
             // Diet and allergens come from the ingredients, in recipe order (spec §3).
             $recipe = $lines->map(fn (DishIngredient $line) => $ingredients[$line->ingredient_id])->values();
@@ -37,6 +37,7 @@ class CatalogLoader
                 id: $dish->id,
                 key: $dish->key,
                 name: $dish->name_en,
+                nameHi: $dish->name_hi,
                 meals: array_values($dish->meals->sortBy(fn (Meal $m) => array_search($m, Meal::cases(), true))->all()),
                 countries: array_values($dish->countries->map(fn (Country $c) => $c->code)->all()),
                 published: $dish->status === DishStatus::Published,
@@ -45,6 +46,13 @@ class CatalogLoader
                 mood: $dish->mood,
                 nutrition: Nutrition::of($dish),
                 ingredients: $quantities,
+                cuisineCode: $dish->cuisine->code,
+                cuisineName: $dish->cuisine->name,
+                prepMinutes: $dish->prep_min,
+                cookMinutes: $dish->cook_min,
+                spice: $dish->spice,
+                effort: $dish->effort,
+                steps: $dish->steps_en,
             );
         })->all();
 
