@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum Allergen: string
+use Filament\Support\Contracts\HasLabel;
+
+enum Allergen: string implements HasLabel
 {
     case Dairy = 'dairy';
     case Gluten = 'gluten';
@@ -13,4 +15,12 @@ enum Allergen: string
     case Shellfish = 'shellfish';
     case Beef = 'beef';
     case Pork = 'pork';
+
+    /**
+     * Lower case, as it reads mid-sentence: "Contains dairy, tree nuts."
+     */
+    public function getLabel(): string
+    {
+        return str_replace('_', ' ', $this->value);
+    }
 }

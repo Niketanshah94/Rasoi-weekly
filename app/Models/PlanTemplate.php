@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\Meal;
+use App\Enums\Weekday;
+use App\Planning\Nutrition;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -52,5 +56,39 @@ class PlanTemplate extends Model
     public function items(): HasMany
     {
         return $this->hasMany(PlanTemplateItem::class);
+    }
+
+    /**
+     * Live dishes staff can pick for a meal: from the plan's dish country if it has one
+     * (the Indian plan abroad), otherwise from the countries it is offered in.
+     *
+     * @return Collection<int, Dish>
+     */
+    public function dishPool(Meal $meal): Collection
+    {
+        $countryIds = $this->dish_country_id ? [$this->dish_country_id] : $this->countries->modelKeys();
+
+        return Dish::published()
+            ->whereJsonContains('meals', $meal->value)
+            ->whereHas('countries', fn (Builder $query) => $query->whereKey($countryIds))
+            ->orderBy('name_en')
+            ->get();
+    }
+
+    /**
+     * Each day's nutrition from the template as written, per serving.
+     *
+     * @return array<string, Nutrition> Keyed by weekday value.
+     */
+    public function dailyNutrition(): array
+    {
+        $byDay = $this->items->groupBy(fn (PlanTemplateItem $item) => $item->weekday->value);
+
+        $days = [];
+        foreach (Weekday::cases() as $day) {
+            $days[$day->value] = Nutrition::sum($byDay->get($day->value, collect())->map(fn (PlanTemplateItem $item) => $item->dish));
+        }
+
+        return $days;
     }
 }

@@ -1,5 +1,10 @@
 <?php
 
+use App\Enums\DishStatus;
+use App\Enums\Meal;
+use App\Models\Country;
+use App\Models\Cuisine;
+use App\Models\Ingredient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -45,6 +50,14 @@ expect()->extend('toBeOne', function () {
 */
 
 /**
+ * A URL on the admin host, where the Filament panel is served.
+ */
+function adminUrl(string $path = '/'): string
+{
+    return 'http://'.config('rasoi.admin_domain').$path;
+}
+
+/**
  * A file from data/, decoded, for checking the database against what was delivered.
  *
  * @return array<mixed>
@@ -52,4 +65,35 @@ expect()->extend('toBeOne', function () {
 function seedData(string $file): array
 {
     return json_decode(file_get_contents(base_path("data/{$file}")), true, flags: JSON_THROW_ON_ERROR);
+}
+
+/**
+ * A complete new-dish form for the admin, live in India for dinner.
+ *
+ * @param  array<string, mixed>  $overrides
+ * @return array<string, mixed>
+ */
+function newDishForm(array $overrides = []): array
+{
+    return [
+        'name_en' => 'Methi malai paneer',
+        'name_hi' => 'मेथी मलाई पनीर',
+        'status' => DishStatus::Published->value,
+        'countries' => [Country::where('code', 'IN')->value('id')],
+        'meals' => [Meal::Dinner->value],
+        'mood' => 'comfort',
+        'cuisine_id' => Cuisine::where('code', 'NI')->value('id'),
+        'effort' => 2,
+        'prep_min' => 10,
+        'cook_min' => 25,
+        'spice' => 1,
+        'kcal' => 420, 'protein_g' => 18, 'carbs_g' => 20, 'fat_g' => 29, 'fibre_g' => 5,
+        'dishIngredients' => [
+            ['ingredient_id' => Ingredient::where('key', 'paneer')->value('id'), 'qty_per_serving' => 100],
+            ['ingredient_id' => Ingredient::where('key', 'onion')->value('id'), 'qty_per_serving' => 0.5],
+        ],
+        // The steps repeater holds each step under its field name while editing.
+        'steps_en' => [['step' => 'Soften the methi in butter.'], ['step' => 'Simmer the paneer in the cream.']],
+        ...$overrides,
+    ];
 }

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Enums\Aisle;
 use App\Enums\Allergen;
+use App\Models\Concerns\HasKeyFromName;
 use Database\Factories\IngredientFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -22,6 +24,7 @@ use Illuminate\Support\Collection;
  * @property Collection<int, Allergen> $allergens
  * @property array<string, string> $local_names Keyed by country code, for example "US" => "Cilantro".
  * @property int $position
+ * @property-read int|null $dish_ingredients_count
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
@@ -29,7 +32,7 @@ use Illuminate\Support\Collection;
 class Ingredient extends Model
 {
     /** @use HasFactory<IngredientFactory> */
-    use HasFactory;
+    use HasFactory, HasKeyFromName;
 
     /**
      * Get the attributes that should be cast.
@@ -44,6 +47,14 @@ class Ingredient extends Model
             'local_names' => 'array',
             'position' => 'integer',
         ];
+    }
+
+    /**
+     * @return HasMany<DishIngredient, $this>
+     */
+    public function dishIngredients(): HasMany
+    {
+        return $this->hasMany(DishIngredient::class);
     }
 
     /**

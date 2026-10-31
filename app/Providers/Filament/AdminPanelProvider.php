@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('')
             ->authGuard('staff')
             ->brandName('Rasoi admin')
+            ->navigationGroups(['Content', 'Settings'])
             ->login()
             ->colors([
                 'primary' => Color::Amber,
