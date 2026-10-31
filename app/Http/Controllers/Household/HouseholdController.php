@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Household;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Household\HouseholdRequest;
+use App\Planning\Diners;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,7 +22,7 @@ class HouseholdController extends Controller
 
         return Inertia::render('settings/Household', [
             'household' => HouseholdOptions::form($household, $household->country),
-            'countries' => HouseholdOptions::countries(),
+            'countries' => HouseholdOptions::countries(Diners::fromHousehold($household)),
         ]);
     }
 
