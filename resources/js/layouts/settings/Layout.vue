@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -10,15 +10,15 @@ import { edit as editProfile } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import type { NavItem } from '@/types';
 
+// Security holds the password settings, so it only shows while password sign-in is on.
 const sidebarNavItems: NavItem[] = [
     {
-        title: 'Profile',
+        title: 'Account',
         href: editProfile(),
     },
-    {
-        title: 'Security',
-        href: editSecurity(),
-    },
+    ...(usePage().props.passwordLogin
+        ? [{ title: 'Security', href: editSecurity() }]
+        : []),
     {
         title: 'Appearance',
         href: editAppearance(),

@@ -21,6 +21,10 @@ defineOptions({
     },
 });
 
+defineProps<{
+    country?: string | null;
+}>();
+
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 </script>
@@ -33,8 +37,8 @@ const user = computed(() => page.props.auth.user);
     <div class="flex flex-col space-y-6">
         <Heading
             variant="small"
-            title="Profile"
-            description="Update your name and email address"
+            title="Account"
+            description="Your name appears on your plan and on messages to your cook."
         />
 
         <Form
@@ -56,20 +60,18 @@ const user = computed(() => page.props.auth.user);
                 <InputError class="mt-2" :message="errors.name" />
             </div>
 
-            <div class="grid gap-2">
-                <Label for="email">Email address</Label>
-                <Input
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    name="email"
-                    :default-value="user.email"
-                    required
-                    autocomplete="username"
-                    placeholder="Email address"
-                />
-                <InputError class="mt-2" :message="errors.email" />
-            </div>
+            <dl class="grid gap-4 text-sm">
+                <div class="grid gap-1">
+                    <dt class="font-medium">Email address</dt>
+                    <dd class="text-muted-foreground">{{ user.email }}</dd>
+                </div>
+                <div v-if="country" class="grid gap-1">
+                    <dt class="font-medium">Country</dt>
+                    <dd class="text-muted-foreground">
+                        {{ country }}. You can change it in Household settings.
+                    </dd>
+                </div>
+            </dl>
 
             <div class="flex items-center gap-4">
                 <Button :disabled="processing" data-test="update-profile-button"
