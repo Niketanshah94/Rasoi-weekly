@@ -54,6 +54,16 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 - Fonts match the prototype (Figtree, Bricolage Grotesque, Noto Sans Devanagari) and are downloaded at build time by the Vite fonts plugin.
 - `CLAUDE.md`, `README.md`, `data/`, `docs/` and `prototype/` are excluded from the front-end formatter: keep them exactly as delivered.
 
+## Content model (set in M1)
+
+- Tables: `countries`, `cuisines`, `ingredients`, `dishes` (+ `dish_country`, `dish_ingredients`), `plan_templates` (+ `plan_template_country`, `plan_template_items`), `pricing_settings`, `prices`, `exchange_rates`. Every content row keeps its `key` (or country/cuisine `code`) and a `position` holding its order in `data/*.json`.
+- Fixed lists are enums in `app/Enums`: `Meal`, `Mood`, `Weekday`, `Allergen`, `Aisle`, `Diet`, `DishStatus`, `PriceMarket`, `BillingInterval`.
+- Diet and allergens are never stored: `Dish::diet()` and `Dish::allergens()` derive them from the ingredients. Allergens come out in recipe order, which is how the prototype lists them and how `derived_for_reference` records them. The data's `is_meat_or_fish` and `is_egg` flags are not stored either; a test checks the aisle rule agrees with them.
+- A dish-ingredient quantity is in the ingredient's own unit; the seeder refuses data where they differ. `name_hi` is optional: international dishes and ingredients have none.
+- `Dish::published()` is the only way dishes should reach customers. Plan slots restrict deletes, so a dish used in a plan cannot be deleted.
+- Prices are integer minor units (`Price::for()`); the yearly saving is calculated (`Price::yearlySavingPercent()`), not stored. `plan_templates.dish_country_id` is null for "own country", otherwise the country dishes come from (the Indian plan abroad).
+- `ContentSeeder` runs one seeder per data file. It only adds rows whose key is missing and never overwrites, so it is safe on a live database where staff have edited content. `DatabaseSeeder` creates the `test@example.com` user only in the local environment.
+
 ## Commands
 
 | What | Command |
@@ -67,6 +77,7 @@ Laravel 13, PHP 8.3 (pinned as the Composer platform), Inertia 3, Vue 3.5 with T
 | Queue worker on its own | `php artisan horizon` |
 | Everything CI runs (format, lint, types, Pint, PHPStan, Pest) | `composer ci:check` |
 | Tests only | `php artisan test` |
+| Load content from `data/*.json` (safe to re-run; adds only what is missing) | `php artisan db:seed --class=ContentSeeder` |
 | Fix PHP style | `composer lint` |
 | Fix front-end format and lint | `npm run check:fix` |
 | Production build | `npm run build` |
